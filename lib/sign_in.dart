@@ -91,6 +91,7 @@ class SignIn extends StatelessWidget {
             ),
           ),
 
+          //Password
           Positioned(
             left: 24.0,
             top: 406.0,
@@ -142,6 +143,10 @@ class SignIn extends StatelessWidget {
               ],
             ),
           )
+
+          
+
+          
         ],
       ),
     );
