@@ -144,7 +144,11 @@ class SignIn extends StatelessWidget {
             ),
           )
 
-          
+        // Sign In Button
+
+        // Sign Up Button
+        
+        //Sign In with Google       
 
           
         ],
