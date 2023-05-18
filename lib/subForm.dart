@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/issueRep.dart';
+import 'package:dormchef/issueRep.dart';
 
 class SubForm extends StatelessWidget {
   const SubForm({super.key});
