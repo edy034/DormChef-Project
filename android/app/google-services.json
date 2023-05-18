@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "13541065091",
+    "project_id": "dormchef-cc34d",
+    "storage_bucket": "dormchef-cc34d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:13541065091:android:6cb83e04866e36316eb6b6",
+        "android_client_info": {
+          "package_name": "com.example.dormchef"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "13541065091-i82vc6mia7qfrhj4h76esl7980c1lv61.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjnJA4cqhHRGaZciWoPrdCtvYAhSn2WQ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "13541065091-i82vc6mia7qfrhj4h76esl7980c1lv61.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
