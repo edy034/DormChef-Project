@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:dormchef/sign_up.dart';
+import 'package:dormchef/sign_in.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
 
-  static const String routeName = '/sign_in';
+  static const String routeName = '/sign_up';
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignUpState extends State<SignUp> {
   bool _isPasswordVisible = false;
 
   @override
@@ -160,103 +160,109 @@ class _SignInState extends State<SignIn> {
                         ),
                       ),
                     )),
-              ],
-            ),
-          ),
 
-          // Sign In Button
-          Positioned(
-            left: 24.0,
-            top: 516.0,
-            child: Column(children: [
-              Container(
-                  width: 364.0,
-                  height: 48.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(24.0),
-                    color: Color(0xFF0B9A61),
+                // Terms and Conditions
+                SizedBox(height: 20),
+                Positioned(
+                  left: 44.0,
+                  child: Column(
+                    children: [
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'By signing up, you\'re agree to our ',
+                              style: GoogleFonts.manrope(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF000000),
+                              ),
+                            ),
+                            TextSpan(
+                              text: 'Terms and Conditions\n',
+                              style: GoogleFonts.manrope(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF0B9A61),
+                              ),
+                            ),
+                            TextSpan(
+                              text: 'and ',
+                              style: GoogleFonts.manrope(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF000000),
+                              ),
+                            ),
+                            TextSpan(
+                              text: 'Privacy Policy',
+                              style: GoogleFonts.manrope(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF0B9A61),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
                   ),
-                  child: Align(
-                      alignment: Alignment.center,
-                      child: Text('Login',
-                          style: GoogleFonts.manrope(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFFFFFFFF),
-                          )))),
-              SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Don't have an account?",
-                    style: GoogleFonts.manrope(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
-                      color: Color(0xFF111111),
-                    ),
-                  ),
-                  SizedBox(width: 4),
-                  GestureDetector(
-                      onTap: () => {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SignUp()))
-                          },
-                      child: Text('Sign Up',
+                ),
+
+                SizedBox(height: 48),
+
+                // Continue Button
+                Positioned(
+                  left: 24.0,
+                  child: Column(children: [
+                    Container(
+                        width: 364.0,
+                        height: 48.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(24.0),
+                          color: Color(0xFF0B9A61),
+                        ),
+                        child: Align(
+                            alignment: Alignment.center,
+                            child: Text('Continue',
+                                style: GoogleFonts.manrope(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xFFFFFFFF),
+                                )))),
+                    SizedBox(height: 16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Join us before?",
                           style: GoogleFonts.manrope(
                             fontSize: 13,
                             fontWeight: FontWeight.w500,
-                            color: Color(0xFF0B9A61),
-                          ))),
-                ],
-              )
-            ]),
-          ),
-
-          // Sign In with Google
-          Positioned(
-            top: 710.0,
-            left: 202.0,
-            child: Center(
-                child: Text(
-              'or',
-              style: GoogleFonts.manrope(
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-                color: Color(0xFF444444),
-              ),
-            )),
-          ),
-
-          Positioned(
-            top: 746.0,
-            left: 24.0,
-            child: Column(
-              children: [
-                Container(
-                  width: 364.0,
-                  height: 50.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(24.0),
-                    border: Border.all(
-                      width: 1.2,
-                      color: Color(0xFF000000),
-                    ),
-                  ),
-                  child: Align(
-                      alignment: Alignment.center,
-                      child: Text('Sign in with Google',
-                          style: GoogleFonts.manrope(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF000000),
-                          ))),
+                            color: Color(0xFF111111),
+                          ),
+                        ),
+                        SizedBox(width: 4),
+                        GestureDetector(
+                            onTap: () => {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => SignIn()))
+                                },
+                            child: Text('Login',
+                                style: GoogleFonts.manrope(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color(0xFF0B9A61),
+                                ))),
+                      ],
+                    )
+                  ]),
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
