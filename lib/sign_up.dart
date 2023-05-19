@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:dormchef/sign_in.dart';
+import 'package:dormchef/homepage.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -215,21 +216,27 @@ class _SignUpState extends State<SignUp> {
                 Positioned(
                   left: 24.0,
                   child: Column(children: [
-                    Container(
-                        width: 364.0,
-                        height: 48.0,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(24.0),
-                          color: Color(0xFF0B9A61),
-                        ),
-                        child: Align(
-                            alignment: Alignment.center,
-                            child: Text('Continue',
-                                style: GoogleFonts.manrope(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color(0xFFFFFFFF),
-                                )))),
+                    GestureDetector(
+                      onTap: () => {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => HomePage()))
+                      },
+                      child: Container(
+                          width: 364.0,
+                          height: 48.0,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(24.0),
+                            color: Color(0xFF0B9A61),
+                          ),
+                          child: Align(
+                              alignment: Alignment.center,
+                              child: Text('Continue',
+                                  style: GoogleFonts.manrope(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xFFFFFFFF),
+                                  )))),
+                    ),
                     SizedBox(height: 16),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
