@@ -38,10 +38,7 @@ class _HomePageState extends State<HomePage> {
       'Bookmark',
       style: optionStyle,
     ),
-    Text(
-      'Profile',
-      style: optionStyle,
-    ),
+    ProfilePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -53,40 +50,39 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Iconsax.home),
             label: 'Home',
-
           ),
-          const BottomNavigationBarItem(
+          
+          BottomNavigationBarItem(
             icon: Icon(Iconsax.search_normal_1),
             label: 'Search',
-
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(Iconsax.add),
+
+          BottomNavigationBarItem(
+            icon: Icon(Iconsax.add_square),
             label: 'Add',
-
           ),
-          const BottomNavigationBarItem(
+
+          BottomNavigationBarItem(
             icon: Icon(Iconsax.bookmark),
             label: 'Bookmark',
-
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(Iconsax.profile),
+          
+          BottomNavigationBarItem(
+            icon: Icon(Iconsax.user),
             label: 'Profile',
-
           ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Color(0xFF0B9A61),
+        unselectedItemColor: Color(0xFF999999),
         onTap: _onItemTapped,
       ),
     );
