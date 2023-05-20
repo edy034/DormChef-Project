@@ -1,3 +1,4 @@
+import 'package:dormchef/viewReport.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:dormchef/splash_screen.dart';
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
 
 
  //home :Subscription(),
-     home:SubForm(),
+    // home:SubForm(),
+     home:ViewReport(),
     //  home:UserProfile(),
      //home:IssueRep(),
 
