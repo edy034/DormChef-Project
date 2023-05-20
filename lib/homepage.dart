@@ -38,10 +38,7 @@ class _HomePageState extends State<HomePage> {
       'Bookmark',
       style: optionStyle,
     ),
-    Text(
-      'Profile',
-      style: optionStyle,
-    ),
+    ProfilePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -57,7 +54,6 @@ class _HomePageState extends State<HomePage> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        // ignore: prefer_const_literals_to_create_immutables
         items: [
           BottomNavigationBarItem(
             icon: Icon(Iconsax.home),
@@ -70,7 +66,7 @@ class _HomePageState extends State<HomePage> {
           ),
 
           BottomNavigationBarItem(
-            icon: Icon(Iconsax.add),
+            icon: Icon(Iconsax.add_square),
             label: 'Add',
           ),
 
@@ -80,7 +76,7 @@ class _HomePageState extends State<HomePage> {
           ),
           
           BottomNavigationBarItem(
-            icon: Icon(Iconsax.profile),
+            icon: Icon(Iconsax.user),
             label: 'Profile',
           ),
         ],
