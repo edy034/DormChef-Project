@@ -15,7 +15,8 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: SingleChildScrollView(
+      child: Stack(
         children: [
           //Title
           Positioned(
@@ -397,7 +398,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
 
           Positioned(
-            top: 768.0,
+            top: 824.0,
             left: 24.0,
             child: Container(
               width: 368.0,
@@ -425,6 +426,7 @@ class _ProfilePageState extends State<ProfilePage> {
           )
         ],
       ),
+    )
     );
   }
 }
