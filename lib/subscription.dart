@@ -1,4 +1,6 @@
+import 'package:dormchef/subForm.dart';
 import 'package:flutter/material.dart';
+import 'package:dormchef/issueRep.dart';
 
 
 class Subscription extends StatelessWidget {
@@ -9,6 +11,54 @@ class Subscription extends StatelessWidget {
   Widget build(BuildContext context) {
 
   bool isButtonSelected = false;
+
+  int selectedIndex = 2;
+
+    // ignore: no_leading_underscores_for_local_identifiers
+    void _onItemTapped(int index) {
+     //  print(index);
+      selectedIndex = index;
+      print(selectedIndex);
+
+       switch (index) {
+      case 0:
+        Navigator.of(context).push(
+                    MaterialPageRoute(  //untuk pergi page lain
+                    builder: (context) => const IssueRep(),
+                 )
+        );
+        break;
+      case 1:
+         Navigator.of(context).push(
+                    MaterialPageRoute(  //untuk pergi page lain
+                    builder: (context) => const IssueRep(),
+                 )
+        );
+        break;
+      case 2:
+         Navigator.of(context).push(
+                    MaterialPageRoute(  //untuk pergi page lain
+                    builder: (context) => const IssueRep(),
+                 )
+        );
+        break;
+      case 3:
+        Navigator.of(context).push(
+                    MaterialPageRoute(  //untuk pergi page lain
+                    builder: (context) => const IssueRep(),
+                 )
+        );
+        break;
+      case 4:
+         Navigator.of(context).push(
+                    MaterialPageRoute(  //untuk pergi page lain
+                    builder: (context) => const IssueRep(),
+                 )
+        );
+        break;
+    }
+      //print(index);
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -59,7 +109,13 @@ class Subscription extends StatelessWidget {
 
             child: TextButton(
                 
-                onPressed: () {},
+                onPressed: () {
+                   Navigator.of(context).push(
+                      MaterialPageRoute(  //untuk pergi page lain
+                        builder: (context) => const SubForm(),
+                      )
+                    );
+                },
                 
             
               child:Column(
@@ -161,7 +217,11 @@ class Subscription extends StatelessWidget {
             child:TextButton(
               
               onPressed: (){
-                
+                Navigator.of(context).push(
+                      MaterialPageRoute(  //untuk pergi page lain
+                        builder: (context) => const SubForm(),
+                      )
+                    );
               },
               
 
@@ -321,31 +381,36 @@ class Subscription extends StatelessWidget {
     ),
 
        bottomNavigationBar: BottomNavigationBar(
-            //currentIndex: 1,
-            backgroundColor: Colors.white,
+           currentIndex: selectedIndex,
+          onTap: _onItemTapped,
+          //currentIndex: 0,
             items: const [
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
-                backgroundColor: Colors.black,
-                label: 'Friends',
+               // backgroundColor: Colors.black,
+                label: 'Home',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.bookmark),
-                label: 'Pending',
+                icon: Icon(Icons.search),
+                label: 'Search',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.add_circle),
-                label: 'Pending',
+                label: 'Add',
               ),
              BottomNavigationBarItem(
-                icon: Icon(Icons.favorite),
-                label: 'Pending',
+                icon: Icon(Icons.bookmark),
+                label: 'Bookmark',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.people),
-                label: 'Pending',
+                icon: Icon(Icons.person),
+                label: 'Profile',
               ),
             ],
+
+            backgroundColor: Colors.pink,
+            selectedItemColor: Colors.grey,
+            unselectedItemColor: Colors.grey,
           ),
     );
   }

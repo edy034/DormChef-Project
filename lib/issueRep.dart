@@ -9,6 +9,54 @@ class IssueRep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    int selectedIndex = 2;
+
+    // ignore: no_leading_underscores_for_local_identifiers
+    void _onItemTapped(int index) {
+     //  print(index);
+      selectedIndex = index;
+      print(selectedIndex);
+
+       switch (index) {
+      case 0:
+        Navigator.of(context).push(
+                    MaterialPageRoute(  //untuk pergi page lain
+                    builder: (context) => const IssueRep(),
+                 )
+        );
+        break;
+      case 1:
+         Navigator.of(context).push(
+                    MaterialPageRoute(  //untuk pergi page lain
+                    builder: (context) => const IssueRep(),
+                 )
+        );
+        break;
+      case 2:
+         Navigator.of(context).push(
+                    MaterialPageRoute(  //untuk pergi page lain
+                    builder: (context) => const IssueRep(),
+                 )
+        );
+        break;
+      case 3:
+        Navigator.of(context).push(
+                    MaterialPageRoute(  //untuk pergi page lain
+                    builder: (context) => const IssueRep(),
+                 )
+        );
+        break;
+      case 4:
+         Navigator.of(context).push(
+                    MaterialPageRoute(  //untuk pergi page lain
+                    builder: (context) => const IssueRep(),
+                 )
+        );
+        break;
+    }
+      //print(index);
+    }
+
 
     return Scaffold(
       appBar: AppBar(
@@ -114,31 +162,36 @@ class IssueRep extends StatelessWidget {
     ),
       
       bottomNavigationBar: BottomNavigationBar(
-            //currentIndex: 1,
-            backgroundColor: Colors.white,
+           currentIndex: selectedIndex,
+          onTap: _onItemTapped,
+          //currentIndex: 0,
             items: const [
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
-                backgroundColor: Colors.black,
-                label: 'Friends',
+               // backgroundColor: Colors.black,
+                label: 'Home',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.bookmark),
-                label: 'Pending',
+                icon: Icon(Icons.search),
+                label: 'Search',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.add_circle),
-                label: 'Pending',
+                label: 'Add',
               ),
              BottomNavigationBarItem(
-                icon: Icon(Icons.favorite),
-                label: 'Pending',
+                icon: Icon(Icons.bookmark),
+                label: 'Bookmark',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.people),
-                label: 'Pending',
+                icon: Icon(Icons.person),
+                label: 'Profile',
               ),
             ],
+
+            backgroundColor: Colors.pink,
+            selectedItemColor: Colors.grey,
+            unselectedItemColor: Colors.grey,
           )
     );
   }

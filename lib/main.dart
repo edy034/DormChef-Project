@@ -5,6 +5,7 @@ import 'package:dormchef/sign_in.dart';
 import 'package:dormchef/subForm.dart';
 
 import 'firebase_options.dart';
+import 'homepage.dart';
 
 
 
@@ -23,12 +24,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _title,
-      home: const SplashScreen(),
+   /*   home: const SplashScreen(),
+      
       
       routes: {
         SplashScreen.routeName: (context) => const SplashScreen(),
         SignIn.routeName: (context) => const SignIn(),
-      }
+        HomePage.routeName: (context) => const HomePage(),
+      }*/
+
+
+ //home :Subscription(),
+     home:SubForm(),
+    //  home:UserProfile(),
+     //home:IssueRep(),
+
     );
   }
 }
