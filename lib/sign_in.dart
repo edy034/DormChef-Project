@@ -84,7 +84,7 @@ class _SignInState extends State<SignIn> {
                             color: Color(0xFF444444),
                           ),
                           decoration: InputDecoration(
-                            hintText: 'hafiz@ocean.umt.edu',
+                            hintText: 'hafiz@graduate.utm.my',
                             hintStyle: GoogleFonts.manrope(
                               fontSize: 13,
                               fontWeight: FontWeight.w500,
