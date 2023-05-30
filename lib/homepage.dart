@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
-import 'package:dormchef/SearchPage.dart';
-import 'package:dormchef/AddPage.dart';
-import 'package:dormchef/BookmarkPage.dart';
 import 'package:dormchef/profile_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -54,35 +50,31 @@ class _HomePageState extends State<HomePage> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Iconsax.home),
             label: 'Home',
           ),
-          
           BottomNavigationBarItem(
             icon: Icon(Iconsax.search_normal_1),
             label: 'Search',
           ),
-
           BottomNavigationBarItem(
             icon: Icon(Iconsax.add_square),
             label: 'Add',
           ),
-
           BottomNavigationBarItem(
             icon: Icon(Iconsax.bookmark),
             label: 'Bookmark',
           ),
-          
           BottomNavigationBarItem(
             icon: Icon(Iconsax.user),
             label: 'Profile',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Color(0xFF0B9A61),
-        unselectedItemColor: Color(0xFF999999),
+        selectedItemColor: const Color(0xFF0B9A61),
+        unselectedItemColor: const Color(0xFF999999),
         onTap: _onItemTapped,
       ),
     );

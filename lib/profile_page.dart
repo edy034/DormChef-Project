@@ -18,6 +18,67 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       body: Stack(
         children: [
+          Positioned.fill(
+            child: SingleChildScrollView(
+              child: Container(
+                  child: Column(
+                children: [
+                  Positioned(
+                    top: 54.0, 
+                    left: 37.0, 
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 48.0,
+                          width: 300.0,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(24.0),
+                            border: Border.all(
+                              width: 1.2,
+                              color: Color(0xFF999999),
+                            ),
+                          ),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              'Hafiz Ahmad',
+                              style: TextStyle1.textStyle1,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 16),
+                        Container(
+                          height: 34.0,
+                          width: 34.0,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(24.0),
+                            color: Color(0xFF444444),
+                          ),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Icon(
+                              Iconsax.notification,
+                              color: Color(0xFFFFFFFF),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    ),
+                    ],
+              )),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+      
+      
+      
+      /*Stack(
+        children: [
           //Title
           Positioned(
             top: 54.0,
@@ -342,7 +403,4 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           )
         ],
-      ),
-    );
-  }
-}
+      ),*/
