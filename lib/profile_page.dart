@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:dormchef/style.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -37,11 +38,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     alignment: Alignment.center,
                     child: Text(
                       'Hafiz Ahmad',
-                      style: GoogleFonts.manrope(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xFF444444),
-                      ),
+                      style: TextStyle1.textStyle1,
                     ),
                   ),
                 ),
@@ -83,20 +80,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 SizedBox(height: 8),
                 Text(
                   '@hafizahd',
-                  style: GoogleFonts.manrope(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFF585858),
-                  ),
+                  style: TextStyle2.textStyle2,
                 ),
                 SizedBox(height: 8),
                 Text(
                   'This person is lazy to set a bio',
-                  style: GoogleFonts.manrope(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFF444444),
-                  ),
+                  style: TextStyle3.textStyle3,
                 ),
                 SizedBox(height: 20),
                 Row(
@@ -105,19 +94,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       children: [
                         Text(
                           '100',
-                          style: GoogleFonts.manrope(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF000000),
-                          ),
+                          style: TextStyle4.textStyle4,
                         ),
                         Text(
                           'following',
-                          style: GoogleFonts.manrope(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF585858),
-                          ),
+                          style: TextStyle2.textStyle2,
                         )
                       ],
                     ),
@@ -126,19 +107,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       children: [
                         Text(
                           '452',
-                          style: GoogleFonts.manrope(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF000000),
-                          ),
+                          style: TextStyle4.textStyle4,
                         ),
                         Text(
                           'follower',
-                          style: GoogleFonts.manrope(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF585858),
-                          ),
+                          style: TextStyle2.textStyle2,
                         )
                       ],
                     ),
@@ -147,19 +120,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       children: [
                         Text(
                           '1',
-                          style: GoogleFonts.manrope(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF000000),
-                          ),
+                          style: TextStyle4.textStyle4,
                         ),
                         Text(
                           'recipe',
-                          style: GoogleFonts.manrope(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF585858),
-                          ),
+                          style: TextStyle2.textStyle2,
                         )
                       ],
                     ),
@@ -182,11 +147,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           alignment: Alignment.center,
                           child: Text(
                             'Edit Profile',
-                            style: GoogleFonts.manrope(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xFF444444),
-                            ),
+                            style: TextStyle3.textStyle3,
                           ),
                         )),
                     SizedBox(width: 16),
@@ -201,11 +162,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           alignment: Alignment.center,
                           child: Text(
                             'My Recipe',
-                            style: GoogleFonts.manrope(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xFFFFFFFF),
-                            ),
+                            style: TextStyle5.textStyle5,
                           ),
                         )),
                   ],
@@ -230,11 +187,7 @@ class _ProfilePageState extends State<ProfilePage> {
               children: [
                 Text(
                   'Active Plan',
-                  style: GoogleFonts.manrope(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF000000),
-                  ),
+                  style: TextStyle6.textStyle6,
                 ),
                 SizedBox(height: 4),
                 Text(
@@ -279,30 +232,18 @@ class _ProfilePageState extends State<ProfilePage> {
                                 children: [
                                   Text(
                                     'DormChef Premium Plan',
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                      color: Color(0xFF000000),
-                                    ),
+                                    style: TextStyle7.textStyle7,
                                   ),
                                   Row(
                                     children: [
                                       Text(
                                         'RM 9.90',
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xFF000000),
-                                        ),
+                                        style: TextStyle8.textStyle8,
                                       ),
                                       SizedBox(width: 4),
                                       Text(
                                         '/ month',
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w400,
-                                          color: Color(0xFF000000),
-                                        ),
+                                        style: TextStyle9.textStyle9,
                                       )
                                     ],
                                   ),
@@ -314,11 +255,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       SizedBox(width: 14),
                                       Text(
                                         'Everything in Free Plan',
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w400,
-                                          color: Color(0xFF000000),
-                                        ),
+                                        style: TextStyle9.textStyle9,
                                       )
                                     ],
                                   ),
@@ -330,11 +267,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       SizedBox(width: 14),
                                       Text(
                                         'Access to more recipes',
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w400,
-                                          color: Color(0xFF000000),
-                                        ),
+                                        style: TextStyle9.textStyle9,
                                       )
                                     ],
                                   ),
@@ -346,11 +279,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       SizedBox(width: 14),
                                       Text(
                                         'Upload Recipe publicly',
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w400,
-                                          color: Color(0xFF000000),
-                                        ),
+                                        style: TextStyle9.textStyle9,
                                       )
                                     ],
                                   ),
@@ -381,14 +310,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     alignment: Alignment.centerRight,
                     child: Text(
                       'view all plans',
-                      style: GoogleFonts.manrope(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xFF0056FB),
-                        textStyle: TextStyle(
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
+                      style: TextStyle10.textStyle10,
                     ),
                   ),
                 )
@@ -413,11 +335,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 alignment: Alignment.center,
                 child: Text(
                 'Report Issue',
-                style: GoogleFonts.manrope(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFFDC0201),
-                ),
+                style: TextStyle11.textStyle11,
               ),
               )
               
