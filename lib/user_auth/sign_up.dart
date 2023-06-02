@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:dormchef/sign_in.dart';
-import 'package:dormchef/homepage.dart';
+import 'package:dormchef/user_auth/sign_in.dart';
+import 'package:dormchef/navigation.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -219,7 +219,7 @@ class _SignUpState extends State<SignUp> {
                     GestureDetector(
                       onTap: () => {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => HomePage()))
+                            MaterialPageRoute(builder: (context) => const Navigation()))
                       },
                       child: Container(
                           width: 364.0,
