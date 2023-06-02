@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dormchef/new_style.dart';
+import 'package:dormchef/text_style.dart';
 
 class ReportIssue extends StatefulWidget {
   const ReportIssue({Key? key}) : super(key: key);

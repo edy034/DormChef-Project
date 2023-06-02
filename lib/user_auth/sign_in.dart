@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:dormchef/user_auth/sign_up.dart';
 import 'package:dormchef/navigation.dart';
+import 'package:dormchef/text_style.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -13,6 +13,8 @@ class SignIn extends StatefulWidget {
   State<SignIn> createState() => _SignInState();
 }
 
+/*This class is mainly for authentication user into the system.*/
+
 class _SignInState extends State<SignIn> {
   bool _isPasswordVisible = false;
 
@@ -21,7 +23,7 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       body: Stack(
         children: [
-          //Title
+          //Project Title
           Positioned(
               left: 140.0,
               top: 156.0,
@@ -29,20 +31,18 @@ class _SignInState extends State<SignIn> {
                 children: [
                   Text(
                     'DormChef',
-                    style: GoogleFonts.manrope(
+                    style: ManropeTextStyles.textStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF0B9A61),
+                      color: const Color(0xFF0B9A61),
                     ),
                   ),
-                  SizedBox(height: 8), //spacing between text and subtext
+                  
+                  const SizedBox(height: 8), //spacing between text and subtext
+                  
                   Text(
                     'Recipe without limits',
-                    style: GoogleFonts.manrope(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
-                      color: Color(0xFF111111),
-                    ),
+                    style: ManropeTextStyles.textStyle(color: const Color(0xFF111111)),
                   ),
                 ],
               )),
@@ -56,13 +56,12 @@ class _SignInState extends State<SignIn> {
               children: [
                 Text(
                   'Email Address',
-                  style: GoogleFonts.manrope(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFF111111),
-                  ),
+                  style: ManropeTextStyles.textStyle(color: const Color(0xFF111111)),
                 ),
-                SizedBox(height: 12),
+
+                const SizedBox(height: 12),
+
+                // Textfield for email address
                 Container(
                     width: 364.0,
                     height: 48.0,
@@ -70,26 +69,21 @@ class _SignInState extends State<SignIn> {
                       borderRadius: BorderRadius.circular(24.0),
                       border: Border.all(
                         width: 1.2,
-                        color: Color(0xFF999999),
+                        color: const Color(0xFF999999),
                       ),
                     ),
+
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 16.0),
                         child: TextField(
-                          style: GoogleFonts.manrope(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF444444),
-                          ),
+                          style: ManropeTextStyles.textStyle(color: const Color(0xFF444444)),
+
+                          // Hint text
                           decoration: InputDecoration(
                             hintText: 'hafiz@graduate.utm.my',
-                            hintStyle: GoogleFonts.manrope(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xFF444444),
-                            ),
+                            hintStyle: ManropeTextStyles.textStyle(color: const Color(0xFF444444)),
                             border: InputBorder.none,
                           ),
                           textAlign: TextAlign.left,
@@ -109,13 +103,11 @@ class _SignInState extends State<SignIn> {
               children: [
                 Text(
                   'Password',
-                  style: GoogleFonts.manrope(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFF111111),
-                  ),
+                  style: ManropeTextStyles.textStyle(color: const Color(0xFF111111)),
                 ),
-                SizedBox(height: 12),
+
+                const SizedBox(height: 12),
+                
                 Container(
                     width: 364.0,
                     height: 48.0,
@@ -123,27 +115,25 @@ class _SignInState extends State<SignIn> {
                       borderRadius: BorderRadius.circular(24.0),
                       border: Border.all(
                         width: 1.2,
-                        color: Color(0xFF999999),
+                        color: const Color(0xFF999999),
                       ),
                     ),
+
+                    // Textfield for password
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 16.0),
+
+                        // Password textfield
                         child: TextFormField(
                           obscureText: !_isPasswordVisible,
-                          style: GoogleFonts.manrope(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF444444),
-                          ),
+                          style: ManropeTextStyles.textStyle(color: const Color(0xFF444444)),
                           decoration: InputDecoration(
-                              hintStyle: GoogleFonts.manrope(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                                color: Color(0xFF444444),
-                              ),
+                              hintStyle: ManropeTextStyles.textStyle(color: const Color(0xFF444444)),
                               border: InputBorder.none,
+
+                              // Password visibility icon
                               suffixIcon: IconButton(
                                 onPressed: () {
                                   setState(() {
@@ -154,7 +144,7 @@ class _SignInState extends State<SignIn> {
                                   _isPasswordVisible
                                       ? Iconsax.eye
                                       : Iconsax.eye_slash,
-                                  color: Color(0xFF444444),
+                                  color: const Color(0xFF444444),
                                 ),
                               )),
                           textAlign: TextAlign.left,
@@ -175,48 +165,45 @@ class _SignInState extends State<SignIn> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => const Navigation()))
                 },
+
                 child: Container(
                     width: 364.0,
                     height: 48.0,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(24.0),
-                      color: Color(0xFF0B9A61),
+                      color: const Color(0xFF0B9A61),
                     ),
                     child: Align(
                         alignment: Alignment.center,
                         child: Text('Login',
-                            style: GoogleFonts.manrope(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xFFFFFFFF),
-                            )))),
+                            style: ManropeTextStyles.textStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFFFFFFFF))))),
               ),
-              SizedBox(height: 16),
+
+              const SizedBox(height: 16),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     "Don't have an account?",
-                    style: GoogleFonts.manrope(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
-                      color: Color(0xFF111111),
-                    ),
+                    style: ManropeTextStyles.textStyle(color: const Color(0xFF111111)),
                   ),
-                  SizedBox(width: 4),
+
+                  const SizedBox(width: 4),
+
+                  // Sign Up
                   GestureDetector(
                       onTap: () => {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SignUp()))
+                                    builder: (context) => const SignUp()))
                           },
                       child: Text('Sign Up',
-                          style: GoogleFonts.manrope(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF0B9A61),
-                          ))),
+                          style: ManropeTextStyles.textStyle(color: const Color(0xFF0B9A61)))),
                 ],
               )
             ]),
@@ -229,11 +216,7 @@ class _SignInState extends State<SignIn> {
             child: Center(
                 child: Text(
               'or',
-              style: GoogleFonts.manrope(
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-                color: Color(0xFF444444),
-              ),
+              style: ManropeTextStyles.textStyle(color: const Color(0xFF444444),)
             )),
           ),
 
@@ -249,17 +232,15 @@ class _SignInState extends State<SignIn> {
                     borderRadius: BorderRadius.circular(24.0),
                     border: Border.all(
                       width: 1.2,
-                      color: Color(0xFF000000),
+                      color: const Color(0xFF000000),
                     ),
                   ),
                   child: Align(
                       alignment: Alignment.center,
                       child: Text('Sign in with Google',
-                          style: GoogleFonts.manrope(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF000000),
-                          ))),
+                          style: ManropeTextStyles.textStyle(
+                              fontWeight: FontWeight.w600,
+                              color: const Color(0xFF000000)))),
                 ),
               ],
             ),
