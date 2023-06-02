@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:dormchef/sign_up.dart';
-import 'package:dormchef/homepage.dart';
+import 'package:dormchef/user_auth/sign_up.dart';
+import 'package:dormchef/navigation.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -84,7 +84,7 @@ class _SignInState extends State<SignIn> {
                             color: Color(0xFF444444),
                           ),
                           decoration: InputDecoration(
-                            hintText: 'hafiz@ocean.umt.edu',
+                            hintText: 'hafiz@graduate.utm.my',
                             hintStyle: GoogleFonts.manrope(
                               fontSize: 13,
                               fontWeight: FontWeight.w500,
@@ -173,7 +173,7 @@ class _SignInState extends State<SignIn> {
               GestureDetector(
                 onTap: () => {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HomePage()))
+                      MaterialPageRoute(builder: (context) => const Navigation()))
                 },
                 child: Container(
                     width: 364.0,

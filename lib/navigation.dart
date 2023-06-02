@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
-import 'package:dormchef/SearchPage.dart';
-import 'package:dormchef/AddPage.dart';
-import 'package:dormchef/BookmarkPage.dart';
-import 'package:dormchef/profile_page.dart';
+import 'package:dormchef/user_profile/profile_main.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class Navigation extends StatefulWidget {
+  const Navigation({Key? key}) : super(key: key);
 
-  static const String routeName = '/homepage';
+  static const String routeName = '/navigation';
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<Navigation> createState() => _NavigationState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _NavigationState extends State<Navigation> {
   int _selectedIndex = 0; //default page is home page
   static const TextStyle optionStyle =
       TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
@@ -38,7 +34,7 @@ class _HomePageState extends State<HomePage> {
       'Bookmark',
       style: optionStyle,
     ),
-    ProfilePage(),
+    ProfileMain(),
   ];
 
   void _onItemTapped(int index) {
@@ -54,35 +50,31 @@ class _HomePageState extends State<HomePage> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Iconsax.home),
             label: 'Home',
           ),
-          
           BottomNavigationBarItem(
             icon: Icon(Iconsax.search_normal_1),
             label: 'Search',
           ),
-
           BottomNavigationBarItem(
             icon: Icon(Iconsax.add_square),
             label: 'Add',
           ),
-
           BottomNavigationBarItem(
             icon: Icon(Iconsax.bookmark),
             label: 'Bookmark',
           ),
-          
           BottomNavigationBarItem(
             icon: Icon(Iconsax.user),
             label: 'Profile',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Color(0xFF0B9A61),
-        unselectedItemColor: Color(0xFF999999),
+        selectedItemColor: const Color(0xFF0B9A61),
+        unselectedItemColor: const Color(0xFF999999),
         onTap: _onItemTapped,
       ),
     );
