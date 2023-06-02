@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-// Font Weight
+/* List of Font Weight codes: */
 // 100 Thin
 // 200 Extra Light
 // 300 Light
