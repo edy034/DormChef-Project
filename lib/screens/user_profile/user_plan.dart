@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:dormchef/text_style.dart';
+import 'package:dormchef/screens/text_style.dart';
 
 class UserPlan extends StatefulWidget {
   const UserPlan({Key? key}) : super(key: key);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:dormchef/user_auth/sign_up.dart';
-import 'package:dormchef/navigation.dart';
-import 'package:dormchef/text_style.dart';
+import 'package:dormchef/screens/user_auth/sign_up.dart';
+import 'package:dormchef/screens/user_homepage/navigation.dart';
+import 'package:dormchef/screens/text_style.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);

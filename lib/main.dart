@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:dormchef/firebase_options.dart';
+import 'package:dormchef/database/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:dormchef/splash_screen.dart';
-import 'package:dormchef/user_auth/sign_in.dart';
-import 'package:dormchef/navigation.dart';
+import 'package:dormchef/screens/user_auth/splash_screen.dart';
+import 'package:dormchef/screens/user_auth/sign_in.dart';
+import 'package:dormchef/screens/user_homepage/navigation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
