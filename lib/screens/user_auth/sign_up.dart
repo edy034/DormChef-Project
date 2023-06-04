@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:dormchef/screens/user_auth/sign_in.dart';
 import 'package:dormchef/screens/user_homepage/navigation.dart';
 import 'package:dormchef/screens/text_style.dart';
 import 'package:dormchef/controllers/user_auth/auth_controller.dart';
+import 'package:dormchef/screens/input_text.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -26,9 +26,6 @@ class _SignUpState extends State<SignUp> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
 
-  // Bool for password visibility
-  bool _isPasswordVisible = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +34,7 @@ class _SignUpState extends State<SignUp> {
           // Title
           Positioned(
             left: 140.0,
-            top: 136.0,
+            top: 106.0,
             child: Column(
               children: [
                 Text(
@@ -62,115 +59,22 @@ class _SignUpState extends State<SignUp> {
           // Email Address
           Positioned(
             left: 24.0,
-            top: 290.0,
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(
-                'Email Address',
-                style:
-                    ManropeTextStyles.textStyle(color: const Color(0xFF111111)),
-              ),
-
-              const SizedBox(height: 12),
-
-              // Email Address TextField
-              Container(
-                  width: 364.0,
-                  height: 48.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(24.0),
-                    border: Border.all(
-                      width: 1.2,
-                      color: const Color(0xFF999999),
-                    ),
-                  ),
-
-                  // Email Address TextField
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 16.0),
-                      
-                      child: TextField(
-                        controller: emailController,
-                        style: ManropeTextStyles.textStyle(
-                            color: const Color(0xFF444444)),
-
-                        // Hint Text
-                        decoration: InputDecoration(
-                          hintText: 'hafiz@ocean.umt.edu',
-                          hintStyle: ManropeTextStyles.textStyle(
-                              color: const Color(0xFF444444)),
-                          border: InputBorder.none,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                  ))
+            top: 240.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start, 
+              children: [
+              CustomTextFieldContainer(textLabel: 'Email Address', controller: emailController, hintText: 'hafiz@graduate.utm.my'),
             ]),
           ),
 
           // Password
           Positioned(
             left: 24.0,
-            top: 386.0,
+            top: 336.0,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Password',
-                  style: ManropeTextStyles.textStyle(
-                      color: const Color(0xFF111111)),
-                ),
-
-                const SizedBox(height: 12),
-
-                // Password TextField
-                Container(
-                    width: 364.0,
-                    height: 48.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24.0),
-                      border: Border.all(
-                        width: 1.2,
-                        color: const Color(0xFF999999),
-                      ),
-                    ),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
-                        
-                        child: TextFormField(
-                          controller: passwordController,
-                          obscureText: !_isPasswordVisible,
-                          style: ManropeTextStyles.textStyle(
-                              color: const Color(0xFF444444)),
-
-                          // Hint Text
-                          decoration: InputDecoration(
-                              hintStyle: ManropeTextStyles.textStyle(
-                                  color: const Color(0xFF444444)),
-                              border: InputBorder.none,
-                              suffixIcon: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    _isPasswordVisible = !_isPasswordVisible;
-                                  });
-                                },
-
-                                // Password Visibility Icon
-                                icon: Icon(
-                                  _isPasswordVisible
-                                      ? Iconsax.eye
-                                      : Iconsax.eye_slash,
-                                  color: const Color(0xFF444444),
-                                ),
-                              )),
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                    )),
+                CustomPasswordTextFieldContainer(textLabel: 'Password', controller: passwordController, hintText: ''),
               ],
             ),
           ),
@@ -178,7 +82,7 @@ class _SignUpState extends State<SignUp> {
           // Username
           Positioned(
             left: 24.0,
-            top: 482.0,
+            top: 432.0,
             child: SizedBox(
               width: 364.0, // Add a specific width constraint
               child: Column(
@@ -219,7 +123,7 @@ class _SignUpState extends State<SignUp> {
                                 decoration: InputDecoration(
                                   hintText: 'username',
                                   hintStyle: ManropeTextStyles.textStyle(
-                                      color: const Color(0xFF444444)),
+                                      color: const Color(0xFF111111)),
                                   border: InputBorder.none,
                                 ),
                                 textAlign: TextAlign.left,
@@ -235,46 +139,21 @@ class _SignUpState extends State<SignUp> {
             ),
           ),
 
-          // Terms and Conditions
+          // Full Name
           Positioned(
-            left: 44.0,
-            top: 886.0,
+            left: 24.0,
+            top: 528.0,
             child: Column(
               children: [
-                Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'By signing up, you\'re agree to our ',
-                        style: ManropeTextStyles.textStyle(),
-                      ),
-
-                      // Terms and Conditions
-                      TextSpan(
-                        text: 'Terms and Conditions\n',
-                        style: ManropeTextStyles.textStyle(
-                            color: const Color(0xFF0B9A61)),
-                      ),
-                      TextSpan(
-                        text: 'and ',
-                        style: ManropeTextStyles.textStyle(),
-                      ),
-                      TextSpan(
-                        text: 'Privacy Policy',
-                        style: ManropeTextStyles.textStyle(
-                            color: const Color(0xFF0B9A61)),
-                      ),
-                    ],
-                  ),
-                )
+                CustomTextFieldContainer(textLabel: 'Full Name', controller: usernameController, hintText: 'Hafiz Ahmad bin Fauzi'),
               ],
-            ),
+            )
           ),
 
           // Continue Button
           Positioned(
             left: 24.0,
-            top: 754.0,
+            top: 756.0,
             child: Column(children: [
               GestureDetector(
                 onTap: () => {
@@ -324,6 +203,42 @@ class _SignUpState extends State<SignUp> {
                 ],
               )
             ]),
+          ),
+
+          // Terms and Conditions
+          Positioned(
+            left: 44.0,
+            top: 624.0,
+            child: Column(
+              children: [
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'By signing up, you\'re agree to our ',
+                        style: ManropeTextStyles.textStyle(),
+                      ),
+
+                      // Terms and Conditions
+                      TextSpan(
+                        text: 'Terms and Conditions\n',
+                        style: ManropeTextStyles.textStyle(
+                            color: const Color(0xFF0B9A61)),
+                      ),
+                      TextSpan(
+                        text: 'and ',
+                        style: ManropeTextStyles.textStyle(),
+                      ),
+                      TextSpan(
+                        text: 'Privacy Policy',
+                        style: ManropeTextStyles.textStyle(
+                            color: const Color(0xFF0B9A61)),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ],
       ),
