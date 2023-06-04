@@ -1,7 +1,7 @@
 {
     "recipes": [
         {
-            "uid": "xh3q4g1l5k",
+            "uid": "4f78e54f-47e1-4fc2-8d6f-2b0a3dc43921",
             "title": "Steamed Eggs",
             "description": "A simple steamed eggs recipe for you to try out!",
             "author": "Maryam Sakinah",
@@ -37,7 +37,7 @@
         },
 
         {
-            "uid": "j7o9m4f6n2",
+            "uid": "a2b0a152-3f98-4db6-bd81-349c0148c4e6",
             "title": "Mac and Cheese",
             "description": "A simple mac and cheese recipe for you to try out!",
             "author": "Maryam Sakinah",
@@ -82,7 +82,7 @@
         },
 
         {
-            "uid": "c1p3z0r5b8",
+            "uid": "c8e5a10a-8f48-4f4b-a02e-12b8f7414d16",
             "title": "Korean Friend Rice",
             "description": "A simple Korean friend rice recipe for you to try out!",
             "author": "Maryam Sakinah",
@@ -132,7 +132,7 @@
         },
 
         {
-            "uid": "v9u7d2w3s1",
+            "uid": "9d2e2c5c-76a7-4d35-9fa6-8a54f1f9a3c9",
             "title": "Gigi Hadid's Pasta Halal Version",
             "description": "A simple Gigi Hadid's pasta recipe halal version for muslims to try out! This recipe is inspired by Gigi Hadid's pasta recipe.",
             "author": "Maryam Sakinah",
@@ -200,7 +200,7 @@
         },
 
         {
-            "uid": "r4m8e9t0i7",
+            "uid": "57843b9a-24e2-4cc4-a5c7-11a5b186f1db",
             "title": "Maggie Chilli Oil",
             "description": "If you're big fans of garlic and spice, try upgrading your instant maggie with this 10-minute Chili Oil Instant Maggie.",
             "author": "Maryam Sakinah",
@@ -240,7 +240,7 @@
         },
 
         {
-            "uid": "y6k1b5z9n4",
+            "uid": "318da0c1-607d-4f56-8a6b-168f9a81322e",
             "title": "Sardine and Egg",
             "description": "",
             "author": "Maryam Sakinah",
@@ -301,7 +301,7 @@
         },
 
         {
-            "uid": "l2o8v4q7x3",
+            "uid": "d9b0c259-78dd-41c0-bca2-ba11b8f9f8f6",
             "title": "Cheeskut",
             "description": "A simple dessert recipe",
             "author": "Maryam Sakinah",
@@ -343,6 +343,125 @@
             "rating": 4.5,
             "meals": "Dessert",
             "image": "cheesekut.png" 
+        },
+
+        {
+            "uid": "7639b8b1-d541-4b5a-8de5-5f6f0b5318a1",
+            "title": "Spaghetti With Red Sauce",
+            "description": "Best dinner meals that can be done using multi-purpose cooking pot.",
+            "author": "Spebels",
+            "ingredients": [
+                {
+                    "name": "spaghetti",
+                    "quantity": "1"
+                },
+                {
+                    "name": "water",
+                    "quantity": "3 cups"
+                },
+                {
+                    "name": "salt",
+                    "quantity": "1 tsp"
+                },
+                {
+                    "name": "cooking oil",
+                    "quantity": "2 tbsp"
+                },
+                {
+                    "name": "red onion",
+                    "quantity": "1"
+                },
+                {
+                    "name": "garlic cloves",
+                    "quantity": "2"
+                },
+                {
+                    "name": "tomato puree",
+                    "quantity": "2 tbsp"
+                },
+                {
+                    "name": "chilli flakes",
+                    "quantity": "1 tbsp"
+                },
+                {
+                    "name": "milk",
+                    "quantity": "1/2 cup"
+                },
+                {
+                    "name": "cheese slice",
+                    "quantity": "2"
+                },
+                {
+                    "name": "pasta water",
+                    "quantity": "5 tbsp"
+                }
+            ],
+            "instructions": [
+                "Bring some water to a boil then add 1 tsp salt and cook your pasta until it's well done. Save some pasta water for later.",
+                "To make the sauce, heat 2 tbsp of cooking oil in a pan and add in chopped red onion and garlic cloves. Cook until fragrant.",
+                "Add some sausages or minced mead and cook for another 1 minute.",
+                "Add 2 tbsp of tomato puree and cook for 30 seconds.",
+                "Add 1 tbsp of chilli flakes. Adjust accordingly to your spicy tolerance.",
+                "Cook for another 1 minute then add 1/2 cup of milk. Mix well.",
+                "Add 2 slices of cheese and mix until the cheese melts.",
+                "Combine your sauce with the melted cheese and add at least 5 tbsp of pasta water. Mix well.",
+                "After 30 seconds your sauce look really creamy and thick. Add in your pasta and mix well."
+            ],
+            "cuisine": "Italian",
+            "difficulty": "Hard",
+            "rating": 4.8,
+            "meals": "Dinner",
+            "image": "spaghetti-with-red-sauce.jpg" 
+        },
+
+        {
+            "uid": "e051c17a-b0f2-4423-8d2f-679f35e5d8d3",
+            "title": "Sambal Sardin",
+            "description": "A simple sambal sardin recipe for you to try out!",
+            "author": "Spebels",
+            "ingredients": [
+                {
+                    "name": "sardine",
+                    "quantity": "1 small can"
+                },
+                {
+                    "name": "Spebels Chili Crisps",
+                    "quantity": "1 tbsp"
+                },
+                {
+                    "name": "cooking oil",
+                    "quantity": "2 tbsp"
+                },
+                {
+                    "name": "red onion",
+                    "quantity": "1"
+                },
+                {
+                    "name": "garlic cloves",
+                    "quantity": "2"
+                },
+                {
+                    "name": "lemon juice",
+                    "quantity": "1/2"
+                },
+                {
+                    "name": "salt",
+                    "quantity": "1/2 tsp"
+                }
+            ],
+            "instructions": [
+                "Debone your sardine fish and set aside.",
+                "Heat some cooking oil then saute your chopped red onion and garlic cloves until fragrant.",
+                "Add your sardine fish and cook for 1 minute.",
+                "Squeeze in some lemon juice and add 1/2 tsp of salt.",
+                "Cook for another 1 minute then add the tomato sauce from the can. Mix well.",
+                "Cook for another 1 minute and enjoy it with rice or bread."
+            ],
+            "cuisine": "Malaysian",
+            "difficulty": "Easy",
+            "rating": 4.6,
+            "meals": "Lunch",
+            "image": "sambal-sardin.jpg" 
         }
     ]
 }
