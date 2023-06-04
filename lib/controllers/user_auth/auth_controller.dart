@@ -38,4 +38,14 @@ class AuthController {
       }
     }
   }
+
+  Future<void> signInUser(String email, String password) async {
+    try {
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+    } catch (error) {
+      if (kDebugMode) {
+        print("Error in signing in user: $error");
+      }
+    }
+  }
 }
