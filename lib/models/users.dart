@@ -2,11 +2,12 @@ class Users {
   // Properties
   String uid = '';
   String username = '';
+  String name = '';
   String email = '';
   String password = '';
   String bio = '';
   String phone = '';
-  String subscription = '';
+  String subscription = 'free';
 
   // Constructor
   Users();
@@ -17,6 +18,9 @@ class Users {
   }
   void setUsername(String username) {
     this.username = username;
+  }
+  void setName(String name) {
+    this.name = name;
   }
   void setEmail(String email) {
     this.email = email;
@@ -41,6 +45,9 @@ class Users {
   String getUsername() {
     return username;
   }
+  String getName() {
+    return name;
+  }
   String getEmail() {
     return email;
   }
@@ -64,6 +71,7 @@ class Users {
       'email': email,
       'password': password,
       'username': username,
+      'name': name,
       'bio': bio,
       'phone': phone,
       'subscription': subscription,
