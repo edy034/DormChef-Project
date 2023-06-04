@@ -1,0 +1,348 @@
+{
+    "recipes": [
+        {
+            "uid": "xh3q4g1l5k",
+            "title": "Steamed Eggs",
+            "description": "A simple steamed eggs recipe for you to try out!",
+            "author": "Maryam Sakinah",
+            "ingredients": [
+                {
+                    "name": "eggs",
+                    "quantity": "2"
+                },
+                {
+                    "name": "cheese slice",
+                    "quantity": "1"
+                },
+                {
+                    "name": "salt",
+                    "quantity": ""
+                },
+                {
+                    "name": "pepper",
+                    "quantity": ""
+                }
+            ],
+            "instructions": [
+                "Turn on the mini cooking pot, pour water over it, and let it boil for a while.",
+                "Combine eggs, salt, pepper and cheese slices in a bowl and beat well.",
+                "When the water has boiled, put a steamer rack on top of it and put in the bowl, let it steam for about 6-12 minutes.",
+                "Top it off with scallions and enjoy."
+            ],
+            "cuisine": "Western",
+            "difficulty": "Easy",
+            "rating": 4.6,
+            "meals": "Breakfast",
+            "image": "steamed-eggs.jpg" 
+        },
+
+        {
+            "uid": "j7o9m4f6n2",
+            "title": "Mac and Cheese",
+            "description": "A simple mac and cheese recipe for you to try out!",
+            "author": "Maryam Sakinah",
+            "ingredients": [
+                {
+                    "name": "macaroni",
+                    "quantity": "1 pack"
+                },
+                {
+                    "name": "cooking oil",
+                    "quantity": ""
+                },
+                {
+                    "name": "onion",
+                    "quantity": "1"
+                },
+                {
+                    "name": "hotdog",
+                    "quantity": "4"
+                },
+                {
+                    "name": "cheese slice",
+                    "quantity": ""
+                },
+                {
+                    "name": "salt",
+                    "quantity": ""
+                }
+            ],
+            "instructions": [
+                "Boil 1 pack of macaroni, and sprinkle a dash of salt and a bit of cooking oil to get the pasta taste good and to prevent them from sticking with each other. Tossed the water when the pasta has cooked.",
+                "Chop up your onions and sausages.",
+                "Pour a bit of oil and onions on the pot and let it cook for awhile, after the onions has cooked, pour all the hotdogs and stir them well.",
+                "Add milk and cheese, stir until all the cheese has melted and pour in all the macaroni.",
+                "Add chilli powder, stir again until well combined and you’re done!"
+            ],
+            "cuisine": "Italian",
+            "difficulty": "Easy",
+            "rating": 4.5,
+            "meals": ["Breakfast", "Lunch", "Dinner"],
+            "image": "mac-n-cheese.jpg" 
+        },
+
+        {
+            "uid": "c1p3z0r5b8",
+            "title": "Korean Friend Rice",
+            "description": "A simple Korean friend rice recipe for you to try out!",
+            "author": "Maryam Sakinah",
+            "ingredients": [
+                {
+                    "name": "sushi rice",
+                    "quantity": "1 cup"
+                },
+                {
+                    "name": "egg",
+                    "quantity": "1"
+                },
+                {
+                    "name": "sweet soy sauce",
+                    "quantity": ""
+                },
+                {
+                    "name": "salty soy sauce",
+                    "quantity": ""
+                },
+                {
+                    "name": "sesame oil",
+                    "quantity": ""
+                },
+                {
+                    "name": "sesame seed",
+                    "quantity": ""
+                },
+                {
+                    "name": "seaweed",
+                    "quantity": ""
+
+                }
+            ],
+            "instructions": [
+                "Cook 1 pot of sushi rice with water and set it aside.",
+                "Pour a bit of oil and cook an egg.",
+                "In a bowl, put the cooked rice and egg and add soy sauces, sesame oil, sesame seed and seaweed.",
+                "Stir well to incorporate the rice with the other ingredients.",
+                "Prepare to feast!"
+            ],
+            "cuisine": "Korean",
+            "difficulty": "Easy",
+            "rating": 4.8,
+            "meals": ["Lunch", "Dinner"],
+            "image": "korean-friend-rice.jpg" 
+        },
+
+        {
+            "uid": "v9u7d2w3s1",
+            "title": "Gigi Hadid's Pasta Halal Version",
+            "description": "A simple Gigi Hadid's pasta recipe halal version for muslims to try out! This recipe is inspired by Gigi Hadid's pasta recipe.",
+            "author": "Maryam Sakinah",
+            "ingredients": [
+                {
+                    "name": "penne pasta",
+                    "quantity": "1 packet"
+                },
+                {
+                    "name": "cooking oil",
+                    "quantity": "3 tbsp"
+                },
+                {
+                    "name": "onion",
+                    "quantity": "1/2"
+                },
+                {
+                    "name": "garlic",
+                    "quantity": "5"
+                },
+                {
+                    "name": "tomato puree",
+                    "quantity": "1/2 cup"
+                },
+                {
+                    "name": "cooking cream",
+                    "quantity": "3/4 cup"
+                },
+                {
+                    "name": "butter",
+                    "quantity": "2 tbsp"
+                },
+                {
+                    "name": "parmesan cheese",
+                    "quantity": "1/4"
+                },
+                {
+                    "name": "black pepper",
+                    "quantity": ""
+                },
+                {
+                    "name": "thyme",
+                    "quantity": ""
+                },
+                {
+                    "name": "chilli flakes",
+                    "quantity": ""
+                }
+            ],
+            "instructions": [
+                "Boil water with a bit of salt and oil, and pour in the pasta. Toss the water after the pasta has cooked.",
+                "Take a knife and chop onion and garlic into small pieces.",
+                "In a different pot, pour a bit of oil and put in the chopped onion and garlic, stir and cook them well.",
+                "Add tomato puree, cooking cream, chili flakes, pepper and salt to complete the taste.",
+                "Pour ½ cup of boiled pasta water into the sauce and mix it well.",
+                "Pour the cooked pasta into the pot and mix well",
+                "Add butter, Parmesan cheese and sprinkle with thyme.",
+                "Incorporate it together and enjoy!"
+            ],
+            "cuisine": "Italian",
+            "difficulty": "Easy",
+            "rating": 4.5,
+            "meals": ["Breakfast", "Lunch", "Dinner"],
+            "image": "gigi-hadid-pasta.jpg" 
+        },
+
+        {
+            "uid": "r4m8e9t0i7",
+            "title": "Maggie Chilli Oil",
+            "description": "If you're big fans of garlic and spice, try upgrading your instant maggie with this 10-minute Chili Oil Instant Maggie.",
+            "author": "Maryam Sakinah",
+            "ingredients": [
+                {
+                    "name": "Maggi Kari",
+                    "quantity": "1 packet"
+                },
+                {
+                    "name": "garlic",
+                    "quantity": "1"
+                },
+                {
+                    "name": "ketchup",
+                    "quantity": "1 tbsp"
+                },
+                {
+                    "name": "cooking oil",
+                    "quantity": "3 tbsp"
+                },
+                {
+                    "name": "chilli flakes",
+                    "quantity": ""
+                }
+            ],
+            "instructions": [
+                "Boil the maggi noodles and toss the water after the noodle has cooked.",
+                "Slice up the garlic and heat up the cooking oil.",
+                "In a bowl, combine garlic, ketchup, chilli flakes and Maggi Kari powder, and lastly pour the hot cooking oil.",
+                "Add maggi noodles and mix well. Suggestion: add other proteins like egg or chicken into the dish to make it more appetising."
+            ],
+            "cuisine": "Malaysian",
+            "difficulty": "Easy",
+            "rating": 4.3,
+            "meals": ["Lunch", "Dinner"],
+            "image": "chili-oil-ramen.jpg" 
+        },
+
+        {
+            "uid": "y6k1b5z9n4",
+            "title": "Sardine and Egg",
+            "description": "",
+            "author": "Maryam Sakinah",
+            "ingredients": [
+                {
+                    "name": "sardine",
+                    "quantity": "1 tin"
+                },
+                {
+                    "name": "shallot",
+                    "quantity": "1"
+                },
+                {
+                    "name": "garlic",
+                    "quantity": "2"
+                },
+                {
+                    "name": "water",
+                    "quantity": "1/2 cup"
+                },
+                {
+                    "name": "sweet soy sauce",
+                    "quantity": "1/2 tbsp"
+                },
+                {   
+                    "name": "eggs",
+                    "quantity": "4"
+                },
+                {
+                    "name": "chilli pepper",
+                    "quantity": "3 small"
+                },
+                {
+                    "name": "key lime",
+                    "quantity": "1"
+                },
+                {
+                    "name": "salt"
+                },
+                {
+                    "name": "sugar"
+                }
+            ],
+            "instructions": [
+                "Pour the sardine into a bowl and separate the sardine fish and the tomato sauce.",
+                "Fry the sardine on a pan with some oil until it looks crispy.",
+                "Pick up the sardine and leave it aside, in the same pan, add sliced shallot and garlic and stir well until cooked.",
+                "Pour the tomato sauce from the tin and add water, soy sauce, salt, sugar, and mix well.",
+                "Add in the stir fried sardine and mashed it in the mixture.",
+                "Add eggs, sliced shallots, sliced chilli peppers, cilantro and squeeze a bit of key lime to get the best taste.",
+                "Wait for the eggs to cook and it’s now ready to serve."
+            ],
+            "cuisine": "Malaysian",
+            "difficulty": "Easy",
+            "rating": 4.0,
+            "meals": ["Lunch", "Dinner"],
+            "image": "sardine-and-egg.jpg" 
+        },
+
+        {
+            "uid": "l2o8v4q7x3",
+            "title": "Cheeskut",
+            "description": "A simple dessert recipe",
+            "author": "Maryam Sakinah",
+            "ingredients": [
+                {
+                    "name": "cream cheese",
+                    "quantity": "500g"
+                },
+                {
+                    "name": "condesed milk",
+                    "quantity": "8 tbsp"
+                },
+                {
+                    "name": "full cream milk",
+                    "quantity": "220ml"
+                },
+                {
+                    "name": "biscuit",
+                    "quantity": "1 packet"
+                },
+                {
+                    "name": "milo powder",
+                    "quantity": ""
+                },
+                {
+                    "name": "nestum",
+                    "quantity": ""
+                }
+            ],
+            "instructions": [
+                "In one bowl, add cream cheese and condensed milk, mix it well.",
+                "In another bowl, pour in the full cream milk and add a bit of milk into the first bowl to get a smooth texture.",
+                "Dip biscuits into the milk bowl, soaking it completely and arrange it on a dish tray.",
+                "Slather the cream cheese mix on top of the soaked biscuits, and repeat the process of layering until it is finished.",
+                "Add in milo powder and nestum powder in the middle of layering."
+            ],
+            "cuisine": "Malaysian",
+            "difficulty": "Easy",
+            "rating": 4.5,
+            "meals": "Dessert",
+            "image": "cheesekut.png" 
+        }
+    ]
+}
