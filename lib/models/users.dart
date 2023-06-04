@@ -2,6 +2,7 @@ class Users {
   // Properties
   String uid = '';
   String username = '';
+  String fullname = '';
   String email = '';
   String password = '';
   String bio = '';
@@ -17,6 +18,9 @@ class Users {
   }
   void setUsername(String username) {
     this.username = username;
+  }
+  void setFullname(String fullname) {
+    this.fullname = fullname;
   }
   void setEmail(String email) {
     this.email = email;
@@ -41,6 +45,9 @@ class Users {
   String getUsername() {
     return username;
   }
+  String getFullname() {
+    return fullname;
+  }
   String getEmail() {
     return email;
   }
@@ -64,6 +71,7 @@ class Users {
       'email': email,
       'password': password,
       'username': username,
+      'fullname': fullname,
       'bio': bio,
       'phone': phone,
       'subscription': subscription,
