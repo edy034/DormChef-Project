@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:dormchef/screens/user_auth/sign_up.dart';
 import 'package:dormchef/screens/user_homepage/navigation.dart';
 import 'package:dormchef/screens/text_style.dart';
+import 'package:dormchef/controllers/user_auth/auth_controller.dart';
+import 'package:dormchef/screens/input_text.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -16,7 +17,8 @@ class SignIn extends StatefulWidget {
 /*This class is mainly for authentication user into the system.*/
 
 class _SignInState extends State<SignIn> {
-  bool _isPasswordVisible = false;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +39,13 @@ class _SignInState extends State<SignIn> {
                       color: const Color(0xFF0B9A61),
                     ),
                   ),
-                  
+
                   const SizedBox(height: 8), //spacing between text and subtext
-                  
+
                   Text(
                     'Recipe without limits',
-                    style: ManropeTextStyles.textStyle(color: const Color(0xFF111111)),
+                    style: ManropeTextStyles.textStyle(
+                        color: const Color(0xFF111111)),
                   ),
                 ],
               )),
@@ -54,42 +57,11 @@ class _SignInState extends State<SignIn> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Email Address',
-                  style: ManropeTextStyles.textStyle(color: const Color(0xFF111111)),
+                CustomTextFieldContainer(
+                  textLabel: 'Email Address',
+                  controller: emailController,
+                  hintText: 'hafiz@graduate.utm.my',
                 ),
-
-                const SizedBox(height: 12),
-
-                // Textfield for email address
-                Container(
-                    width: 364.0,
-                    height: 48.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24.0),
-                      border: Border.all(
-                        width: 1.2,
-                        color: const Color(0xFF999999),
-                      ),
-                    ),
-
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
-                        child: TextField(
-                          style: ManropeTextStyles.textStyle(color: const Color(0xFF444444)),
-
-                          // Hint text
-                          decoration: InputDecoration(
-                            hintText: 'hafiz@graduate.utm.my',
-                            hintStyle: ManropeTextStyles.textStyle(color: const Color(0xFF444444)),
-                            border: InputBorder.none,
-                          ),
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                    )),
               ],
             ),
           ),
@@ -101,56 +73,11 @@ class _SignInState extends State<SignIn> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Password',
-                  style: ManropeTextStyles.textStyle(color: const Color(0xFF111111)),
+                CustomPasswordTextFieldContainer(
+                  textLabel: 'Password',
+                  controller: passwordController,
+                  hintText: 'Enter your password',
                 ),
-
-                const SizedBox(height: 12),
-                
-                Container(
-                    width: 364.0,
-                    height: 48.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24.0),
-                      border: Border.all(
-                        width: 1.2,
-                        color: const Color(0xFF999999),
-                      ),
-                    ),
-
-                    // Textfield for password
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
-
-                        // Password textfield
-                        child: TextFormField(
-                          obscureText: !_isPasswordVisible,
-                          style: ManropeTextStyles.textStyle(color: const Color(0xFF444444)),
-                          decoration: InputDecoration(
-                              hintStyle: ManropeTextStyles.textStyle(color: const Color(0xFF444444)),
-                              border: InputBorder.none,
-
-                              // Password visibility icon
-                              suffixIcon: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    _isPasswordVisible = !_isPasswordVisible;
-                                  });
-                                },
-                                icon: Icon(
-                                  _isPasswordVisible
-                                      ? Iconsax.eye
-                                      : Iconsax.eye_slash,
-                                  color: const Color(0xFF444444),
-                                ),
-                              )),
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                    )),
               ],
             ),
           ),
@@ -162,10 +89,13 @@ class _SignInState extends State<SignIn> {
             child: Column(children: [
               GestureDetector(
                 onTap: () => {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Navigation()))
+                  AuthController().signInUser(
+                      emailController.text, passwordController.text),
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Navigation()))
                 },
-
                 child: Container(
                     width: 364.0,
                     height: 48.0,
@@ -181,15 +111,14 @@ class _SignInState extends State<SignIn> {
                                 fontWeight: FontWeight.w600,
                                 color: const Color(0xFFFFFFFF))))),
               ),
-
               const SizedBox(height: 16),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     "Don't have an account?",
-                    style: ManropeTextStyles.textStyle(color: const Color(0xFF111111)),
+                    style: ManropeTextStyles.textStyle(
+                        color: const Color(0xFF111111)),
                   ),
 
                   const SizedBox(width: 4),
@@ -203,7 +132,8 @@ class _SignInState extends State<SignIn> {
                                     builder: (context) => const SignUp()))
                           },
                       child: Text('Sign Up',
-                          style: ManropeTextStyles.textStyle(color: const Color(0xFF0B9A61)))),
+                          style: ManropeTextStyles.textStyle(
+                              color: const Color(0xFF0B9A61)))),
                 ],
               )
             ]),
@@ -214,10 +144,10 @@ class _SignInState extends State<SignIn> {
             top: 710.0,
             left: 202.0,
             child: Center(
-                child: Text(
-              'or',
-              style: ManropeTextStyles.textStyle(color: const Color(0xFF444444),)
-            )),
+                child: Text('or',
+                    style: ManropeTextStyles.textStyle(
+                      color: const Color(0xFF444444),
+                    ))),
           ),
 
           Positioned(
