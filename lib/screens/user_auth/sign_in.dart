@@ -3,6 +3,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:dormchef/screens/user_auth/sign_up.dart';
 import 'package:dormchef/screens/user_homepage/navigation.dart';
 import 'package:dormchef/screens/text_style.dart';
+import 'package:dormchef/controllers/user_auth/auth_controller.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -16,6 +17,8 @@ class SignIn extends StatefulWidget {
 /*This class is mainly for authentication user into the system.*/
 
 class _SignInState extends State<SignIn> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   bool _isPasswordVisible = false;
 
   @override
@@ -78,6 +81,7 @@ class _SignInState extends State<SignIn> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 16.0),
                         child: TextField(
+                          controller: emailController,
                           style: ManropeTextStyles.textStyle(color: const Color(0xFF444444)),
 
                           // Hint text
@@ -127,6 +131,7 @@ class _SignInState extends State<SignIn> {
 
                         // Password textfield
                         child: TextFormField(
+                          controller: passwordController,
                           obscureText: !_isPasswordVisible,
                           style: ManropeTextStyles.textStyle(color: const Color(0xFF444444)),
                           decoration: InputDecoration(
@@ -162,6 +167,7 @@ class _SignInState extends State<SignIn> {
             child: Column(children: [
               GestureDetector(
                 onTap: () => {
+                  AuthController().signInUser(emailController.text, passwordController.text),
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => const Navigation()))
                 },
