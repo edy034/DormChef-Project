@@ -25,6 +25,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
+  TextEditingController fullnameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -145,7 +146,7 @@ class _SignUpState extends State<SignUp> {
             top: 528.0,
             child: Column(
               children: [
-                CustomTextFieldContainer(textLabel: 'Full Name', controller: usernameController, hintText: 'Hafiz Ahmad bin Fauzi'),
+                CustomTextFieldContainer(textLabel: 'Full Name', controller: fullnameController, hintText: 'Hafiz Ahmad bin Fauzi'),
               ],
             )
           ),
@@ -159,7 +160,7 @@ class _SignUpState extends State<SignUp> {
                 onTap: () => {
                   // Assign the value of the email, password and username to the user object
                   authController.registerUser(
-                      emailController.text, passwordController.text, usernameController.text),
+                      emailController.text, passwordController.text, usernameController.text, fullnameController.text),
                   Navigator.push(
                       context,
                       MaterialPageRoute(

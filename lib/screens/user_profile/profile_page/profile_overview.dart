@@ -93,7 +93,13 @@ class _ProfileOverviewState extends State<ProfileOverview> {
               children: [
 
                 // This is the widget for the "Edit Profile" button
-                Container(
+                GestureDetector(
+                  onTap: () => {
+                    // Navigate to the edit profile page
+                    Navigator.pushNamed(context, '/profile_edit')
+                  },
+
+                  child: Container(
                     height: 48.0,
                     width: 182.0,
                     decoration: BoxDecoration(
@@ -110,6 +116,7 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                         style: ManropeTextStyles.textStyle(color: const Color(0xFF444444)),
                       ),
                     )),
+                ),
 
                 const SizedBox(width: 16),
 

@@ -3,7 +3,6 @@ class Users {
   String uid = '';
   String username = '';
   String fullname = '';
-  String name = '';
   String email = '';
   String password = '';
   String bio = '';
@@ -17,26 +16,31 @@ class Users {
   void setUid(String uid) {
     this.uid = uid;
   }
+
   void setUsername(String username) {
     this.username = username;
   }
+
   void setFullname(String fullname) {
     this.fullname = fullname;
-  void setName(String name) {
-    this.name = name;
   }
+
   void setEmail(String email) {
     this.email = email;
   }
+
   void setPassword(String password) {
     this.password = password;
   }
+
   void setBio(String bio) {
     this.bio = bio;
   }
+
   void setPhone(String phone) {
     this.phone = phone;
   }
+
   void setSubscription(String subscription) {
     this.subscription = subscription;
   }
@@ -45,29 +49,34 @@ class Users {
   String getUid() {
     return uid;
   }
+
   String getUsername() {
     return username;
   }
+
   String getFullname() {
     return fullname;
-  String getName() {
-    return name;
   }
+
   String getEmail() {
     return email;
   }
+
   String getPassword() {
     return password;
   }
+
   String getBio() {
     return bio;
   }
+
   String getPhone() {
     return phone;
   }
+
   String getSubscription() {
     return subscription;
-  } 
+  }
 
   // Convert user object to map
   Map<String, dynamic> toMap() {
@@ -77,7 +86,6 @@ class Users {
       'password': password,
       'username': username,
       'fullname': fullname,
-      'name': name,
       'bio': bio,
       'phone': phone,
       'subscription': subscription,
