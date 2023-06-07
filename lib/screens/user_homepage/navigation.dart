@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 import 'package:dormchef/screens/user_profile/profile_main.dart';
+import 'package:dormchef/screens/recipe/add_recipe.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({Key? key}) : super(key: key);
@@ -26,10 +27,7 @@ class _NavigationState extends State<Navigation> {
       'Search',
       style: optionStyle,
     ),
-    Text(
-      'Add',
-      style: optionStyle,
-    ),
+    AddRecipe(),
     Text(
       'Bookmark',
       style: optionStyle,
