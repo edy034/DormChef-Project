@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 class AddRecipe extends StatelessWidget {
-  AddRecipe({super.key});
+  const AddRecipe({super.key});
 
-  final List<String> pictures = ["telur masak paprik.jpg"];
+  static List<String> pictures = ["telur masak paprik.jpg"];
+
+  static const String routeName = '/add_recipe';
 
   @override
   Widget build(BuildContext context) {

@@ -3,6 +3,7 @@ import 'package:iconsax/iconsax.dart';
 
 import 'package:dormchef/screens/user_profile/profile_main.dart';
 import 'package:dormchef/screens/recipe/add_recipe.dart';
+import 'package:dormchef/screens/user_homepage/home_main.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({Key? key}) : super(key: key);
@@ -19,10 +20,7 @@ class _NavigationState extends State<Navigation> {
       TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
 
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home',
-      style: optionStyle,
-    ),
+    HomeMain(),
     Text(
       'Search',
       style: optionStyle,
