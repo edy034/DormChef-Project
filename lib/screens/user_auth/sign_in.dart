@@ -89,6 +89,8 @@ class _SignInState extends State<SignIn> {
             child: Column(children: [
               GestureDetector(
                 onTap: () => {
+
+                  // Call signInUser method from AuthController
                   AuthController().signInUser(
                       emailController.text, passwordController.text),
                   Navigator.push(
