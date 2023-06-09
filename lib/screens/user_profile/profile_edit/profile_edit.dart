@@ -7,6 +7,8 @@ import 'package:image_picker/image_picker.dart';
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
+  static const String routeName = '/profile_edit';
+
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
@@ -78,10 +80,39 @@ class _ProfilePageState extends State<ProfilePage> {
                       radius: 64,
                       backgroundImage: profilePicture != null
                           ? FileImage(profilePicture!) as ImageProvider<Object>
-                          : const AssetImage('assets/images/hafiz.jpg'),
+                          : const AssetImage('images/hafiz.jpg'),
                     ),
                   ),
-                ))
+                )),
+
+            const SizedBox(height: 68),
+
+            CustomTextFieldContainer(textLabel: 'Name', controller: _fullNameController, hintText: 'Hafiz Ahmad'),
+            const SizedBox(height: 18),
+            CustomTextFieldContainer(textLabel: 'Username', controller: _usernameController, hintText: '@hafizahd'),
+            const SizedBox(height: 18),
+            CustomTextFieldContainer(textLabel: 'Email Address', controller: _emailController, hintText: 'hafiz@graduate.utm.my'),
+            const SizedBox(height: 18),
+            CustomPasswordTextFieldContainer(textLabel: 'Password', controller: _passwordController, hintText: ''),
+
+            const SizedBox(height: 36),
+            
+            // Text span
+            const Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'Joined',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      color: Color(0xFF999999),
+                    ),
+                  )
+                ]
+              )
+            )
+
           ],
         ),
       ),
