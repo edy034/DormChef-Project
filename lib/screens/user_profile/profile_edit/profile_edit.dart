@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dormchef/screens/input_text.dart';
+import 'package:dormchef/screens/text_style.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -98,20 +99,45 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(height: 36),
             
             // Text span
-            const Text.rich(
+            Text.rich(
               TextSpan(
                 children: [
                   TextSpan(
                     text: 'Joined',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xFF999999),
-                    ),
-                  )
+                    style: ManropeTextStyles.textStyle(),
+                  ),
+                  TextSpan(
+                    text: ' 2 March 2023',
+                    style: ManropeTextStyles.textStyle(fontWeight: FontWeight.w700),
+                  ),
                 ]
               )
-            )
+            ),
+
+            const SizedBox(height: 36),
+
+            GestureDetector(
+                /*onTap: () => {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Navigation()))
+                },*/
+                child: Container(
+                    width: 364.0,
+                    height: 48.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24.0),
+                      color: const Color(0xFF0B9A61),
+                    ),
+                    child: Align(
+                        alignment: Alignment.center,
+                        child: Text('Continue',
+                            style: ManropeTextStyles.textStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFFFFFFFF))))),
+              ),
 
           ],
         ),
