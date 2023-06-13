@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:dormchef/screens/user_auth/sign_up.dart';
-import 'package:dormchef/screens/user_homepage/navigation.dart';
 import 'package:dormchef/screens/text_style.dart';
 import 'package:dormchef/controllers/user_auth/auth_controller.dart';
 import 'package:dormchef/screens/input_text.dart';
@@ -89,8 +88,8 @@ class _SignInState extends State<SignIn> {
             child: Column(children: [
               GestureDetector(
                 onTap: () {
-                  AuthController()
-                      .signIn(context, emailController.text, passwordController.text);
+                  AuthController().signIn(
+                      context, emailController.text, passwordController.text);
                 },
                 child: Container(
                     width: 364.0,
@@ -134,43 +133,6 @@ class _SignInState extends State<SignIn> {
               )
             ]),
           ),
-
-          // Sign In with Google
-          Positioned(
-            top: 710.0,
-            left: 202.0,
-            child: Center(
-                child: Text('or',
-                    style: ManropeTextStyles.textStyle(
-                      color: const Color(0xFF444444),
-                    ))),
-          ),
-
-          Positioned(
-            top: 746.0,
-            left: 24.0,
-            child: Column(
-              children: [
-                Container(
-                  width: 364.0,
-                  height: 50.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(24.0),
-                    border: Border.all(
-                      width: 1.2,
-                      color: const Color(0xFF000000),
-                    ),
-                  ),
-                  child: Align(
-                      alignment: Alignment.center,
-                      child: Text('Sign in with Google',
-                          style: ManropeTextStyles.textStyle(
-                              fontWeight: FontWeight.w600,
-                              color: const Color(0xFF000000)))),
-                ),
-              ],
-            ),
-          )
         ],
       ),
     );
