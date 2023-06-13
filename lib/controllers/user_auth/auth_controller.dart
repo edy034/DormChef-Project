@@ -43,5 +43,13 @@ class AuthController {
     }
   }
 
-  Future<void> signIn(String email, String password) async {}
+  Future<bool> signIn(String email, String password) async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return true;
+    } catch (e) {}
+  }
 }

@@ -88,7 +88,7 @@ class _SignInState extends State<SignIn> {
             top: 516.0,
             child: Column(children: [
               GestureDetector(
-                onTap: () async {
+                onTap: () {
                   AuthController().signIn(
                       emailController.text,
                       passwordController.text);
