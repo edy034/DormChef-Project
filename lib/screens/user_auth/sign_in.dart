@@ -89,10 +89,8 @@ class _SignInState extends State<SignIn> {
             child: Column(children: [
               GestureDetector(
                 onTap: () {
-                  AuthController().signIn(
-                      emailController.text,
-                      passwordController.text);
-                  //Navigator.pushNamed(context, Navigation.routeName);
+                  AuthController()
+                      .signIn(context, emailController.text, passwordController.text);
                 },
                 child: Container(
                     width: 364.0,
