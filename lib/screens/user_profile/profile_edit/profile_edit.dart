@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dormchef/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'dart:io';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dormchef/screens/input_text.dart';
 import 'package:dormchef/screens/text_style.dart';
 import 'package:image_picker/image_picker.dart';
@@ -18,16 +20,38 @@ class _ProfilePageState extends State<ProfilePage> {
   File? profilePicture;
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _subscriptionController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  
+    Future<void> fetchUserData(String uid) async {
+    try {
+      final userDoc = await FirebaseFirestore.instance.collection('users').doc(uid).get();
+      if (userDoc.exists) {
+        Map<String, dynamic> userData = userDoc.data()!;
+        // Process the userData as needed
+        _fullNameController.text = userData['fullname'];
+        _phoneController.text = userData['phone'].toString();
+        _usernameController.text = userData['username'];
+        _emailController.text = userData['email'];
+      } else {
+        // User document does not exist
+        // ignore: avoid_print
+        print('User not found');
+      }
+    } catch (error) {
+      // Handle any errors that occur during data fetching
+      // ignore: avoid_print
+      print('Error fetching user data: $error');
+    }
+  }
 
   @override
   void initState() {
     super.initState();
-    // Fetch the users data
-    fetchUsersData();
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    final String uid = userProvider.uid.toString();
+    fetchUserData(uid);
+
   }
 
   @override
@@ -88,57 +112,64 @@ class _ProfilePageState extends State<ProfilePage> {
 
             const SizedBox(height: 68),
 
-            CustomTextFieldContainer(textLabel: 'Name', controller: _fullNameController, hintText: 'Hafiz Ahmad'),
+            CustomTextFieldContainer(
+                textLabel: 'Name',
+                controller: _fullNameController,
+                hintText: 'Hafiz Ahmad'),
             const SizedBox(height: 18),
-            CustomTextFieldContainer(textLabel: 'Username', controller: _usernameController, hintText: '@hafizahd'),
+            CustomTextFieldContainer(
+                textLabel: 'Username',
+                controller: _usernameController,
+                hintText: '@hafizahd'),
             const SizedBox(height: 18),
-            CustomTextFieldContainer(textLabel: 'Email Address', controller: _emailController, hintText: 'hafiz@graduate.utm.my'),
+            CustomTextFieldContainer(
+                textLabel: 'Email Address',
+                controller: _emailController,
+                hintText: 'hafiz@graduate.utm.my'),
             const SizedBox(height: 18),
-            CustomPasswordTextFieldContainer(textLabel: 'Password', controller: _passwordController, hintText: ''),
+            CustomTextFieldContainer(
+                textLabel: 'Phone Number',
+                controller: _phoneController,
+                hintText: '0123456789'),
 
             const SizedBox(height: 36),
-            
+
             // Text span
-            Text.rich(
+            Text.rich(TextSpan(children: [
               TextSpan(
-                children: [
-                  TextSpan(
-                    text: 'Joined',
-                    style: ManropeTextStyles.textStyle(),
-                  ),
-                  TextSpan(
-                    text: ' 2 March 2023',
-                    style: ManropeTextStyles.textStyle(fontWeight: FontWeight.w700),
-                  ),
-                ]
-              )
-            ),
+                text: 'Joined',
+                style: ManropeTextStyles.textStyle(),
+              ),
+              TextSpan(
+                text: ' 2 March 2023',
+                style: ManropeTextStyles.textStyle(fontWeight: FontWeight.w700),
+              ),
+            ])),
 
             const SizedBox(height: 36),
 
             GestureDetector(
-                /*onTap: () => {
+              /*onTap: () => {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const Navigation()))
                 },*/
-                child: Container(
-                    width: 364.0,
-                    height: 48.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24.0),
-                      color: const Color(0xFF0B9A61),
-                    ),
-                    child: Align(
-                        alignment: Alignment.center,
-                        child: Text('Continue',
-                            style: ManropeTextStyles.textStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(0xFFFFFFFF))))),
-              ),
-
+              child: Container(
+                  width: 364.0,
+                  height: 48.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(24.0),
+                    color: const Color(0xFF0B9A61),
+                  ),
+                  child: Align(
+                      alignment: Alignment.center,
+                      child: Text('Continue',
+                          style: ManropeTextStyles.textStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: const Color(0xFFFFFFFF))))),
+            ),
           ],
         ),
       ),
