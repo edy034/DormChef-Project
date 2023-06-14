@@ -12,7 +12,7 @@ class AuthController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<void> registerUser(
-      String email, String password, String username) async {
+      String email, String password, String username, String fullname) async {
     // Create a new user object
     Users user = Users();
 
@@ -20,6 +20,7 @@ class AuthController {
     user.setEmail(email);
     user.setPassword(password);
     user.setUsername(username);
+    user.setFullname(fullname);
 
     // Create a new user in Firebase Authentication
     try {

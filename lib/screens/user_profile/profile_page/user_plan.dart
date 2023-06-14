@@ -132,7 +132,7 @@ class _UserPlanState extends State<UserPlan> {
                         width: 183.0,
                         decoration: const BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/spaceship.png'),
+                            image: AssetImage('images/spaceship.png'),
                             fit: BoxFit.fill,
                           ),
                         ),
