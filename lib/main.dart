@@ -5,12 +5,17 @@ import 'package:dormchef/screens/user_auth/splash_screen.dart';
 import 'package:dormchef/screens/user_auth/sign_in.dart';
 import 'package:dormchef/screens/user_homepage/navigation.dart';
 import 'package:dormchef/screens/user_profile/profile_edit/profile_edit.dart';
+import 'package:provider/provider.dart';
+import 'package:dormchef/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (_) => UserProvider(),
+      child: const MyApp(),
+    ),);
 }
 
 class MyApp extends StatelessWidget {
