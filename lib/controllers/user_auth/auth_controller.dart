@@ -2,6 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dormchef/models/users.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+import '../../screens/user_homepage/navigation.dart';
 
 class AuthController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -20,7 +24,8 @@ class AuthController {
 
     // Create a new user in Firebase Authentication
     try {
-      await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
       User? firebaseUser = _auth.currentUser;
 
       if (firebaseUser != null) {
@@ -40,13 +45,35 @@ class AuthController {
     }
   }
 
-  Future<void> signInUser(String email, String password) async {
-    try {
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
-    } catch (error) {
-      if (kDebugMode) {
-        print("Error in signing in user: $error");
+  Future<void> signIn(
+      BuildContext context, String email, String password) async {
+    if (email.isNotEmpty &&
+        password.isNotEmpty &&
+        email.contains('@') &&
+        email.contains('.')) {
+      try {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+        // ignore: use_build_context_synchronously
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const Navigation()));
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Invalid email or password'),
+          ),
+        );
       }
+    }
+    else
+    {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Invalid email or password'),
+        ),
+      );
     }
   }
 }
