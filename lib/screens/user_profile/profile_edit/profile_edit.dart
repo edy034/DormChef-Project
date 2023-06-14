@@ -45,6 +45,23 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
+  Future<void> updateUserData(String uid) async {
+    try {
+      final userDoc = FirebaseFirestore.instance.collection('users').doc(uid);
+      await userDoc.update({
+        'fullname': _fullNameController.text,
+        'phone': _phoneController.text,
+        'username': _usernameController.text,
+        'email': _emailController.text,
+      });
+      // ignore: avoid_print
+      print('User data updated successfully');
+    } catch (error) {
+      // ignore: avoid_print
+      print('Error updating user data: $error');
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -74,25 +91,13 @@ class _ProfilePageState extends State<ProfilePage> {
           children: <Widget>[
             GestureDetector(
                 onTap: () async {
-                  // Handle the tap event, open the album to select a new profile picture
-                  // You can use image_picker package to access the album and select an image
-                  // Here's an example using image_picker package:
-
-                  // Import the image_picker package
-
-                  // Open the album to select an image
                   final ImagePicker picker = ImagePicker();
                   final XFile? pickedImage =
                       await picker.pickImage(source: ImageSource.gallery);
 
-                  // Check if an image is picked and update the profile picture if available
                   if (pickedImage != null) {
-                    // Use the picked image and update the profile picture
-                    // You can save the image to storage or upload it to a server
-                    // and update the profile picture accordingly
-                    // For example:
+
                     setState(() {
-                      // Update the profile picture with the picked image
                       profilePicture = File(pickedImage.path);
                     });
                   }
@@ -125,7 +130,8 @@ class _ProfilePageState extends State<ProfilePage> {
             CustomTextFieldContainer(
                 textLabel: 'Email Address',
                 controller: _emailController,
-                hintText: 'hafiz@graduate.utm.my'),
+                hintText: 'hafiz@graduate.utm.my',
+                readOnly: true,),
             const SizedBox(height: 18),
             CustomTextFieldContainer(
                 textLabel: 'Phone Number',
@@ -149,12 +155,17 @@ class _ProfilePageState extends State<ProfilePage> {
             const SizedBox(height: 36),
 
             GestureDetector(
-              /*onTap: () => {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Navigation()))
-                },*/
+              onTap: () async {
+                final userProvider =
+                    Provider.of<UserProvider>(context, listen: false);
+                final String uid = userProvider.uid.toString();
+
+                // Update user data in Firestore
+                await updateUserData(uid);
+
+                // Fetch the updated user data
+                fetchUserData(uid);
+              },
               child: Container(
                   width: 364.0,
                   height: 48.0,
@@ -176,5 +187,3 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 }
-
-Future<void> fetchUsersData() async {}
