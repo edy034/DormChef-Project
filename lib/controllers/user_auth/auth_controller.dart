@@ -11,8 +11,31 @@ class AuthController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  void validateRegisterInput(
+      BuildContext context,
+      String email,
+      String password,
+      String username,
+      String fullname,
+      ) {
+    if (email.isNotEmpty &&
+        password.isNotEmpty &&
+        username.isNotEmpty &&
+        fullname.isNotEmpty &&
+        email.contains('@') &&
+        email.contains('.')) {
+      registerUser(context, email, password, username, fullname);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Incomplete details!'),
+        ),
+      );
+    }
+  }
+
   Future<void> registerUser(
-      String email, String password, String username, String fullname) async {
+    BuildContext context, String email, String password, String username, String fullname) async {
     // Create a new user object
     Users user = Users();
 
@@ -38,11 +61,13 @@ class AuthController {
         // Reference to the user's document in Firestore
         await _firestore.collection('users').doc(firebaseUser.uid).set(userMap);
       }
-    } catch (error) {
-      
-        // ignore: avoid_print
-        print("Error in creating user: $error");
-    }
+    } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Error creating account!'),
+          ),
+        );
+      }
   }
 
   Future<void> signIn(
