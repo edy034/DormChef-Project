@@ -296,11 +296,11 @@ class SubForm extends StatelessWidget {
                         );
 
                         // Navigating to the next screen after updating the user's plan
-                        Navigator.of(context).push(
+                     /*   Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const CurrentPlanScreen(),
+                          //  builder: (context) => const CurrentPlanScreen(),
                           ),
-                        );
+                        );*/
                       }
                     },
                     child: Text(

@@ -1,9 +1,45 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:dormchef/provider.dart';
 
-class CurrentPlanScreen extends StatelessWidget {
+class CurrentPlanScreen extends StatefulWidget {
   const CurrentPlanScreen({Key? key}) : super(key: key);
+
+  @override
+  _CurrentPlanScreenState createState() => _CurrentPlanScreenState();
+}
+
+class _CurrentPlanScreenState extends State<CurrentPlanScreen> {
+  String uid = '';
+
+  @override
+  void initState() {
+    super.initState();
+    final userProvider = Provider.of<UserProvider>(context as BuildContext, listen: false);
+    uid = userProvider.uid.toString();
+    fetchUserData(uid);
+  }
+
+  Future<void> fetchUserData(String uid) async {
+    try {
+      final userDoc = await FirebaseFirestore.instance.collection('users').doc(uid).get();
+      print(userDoc.id);
+      if (userDoc.exists) {
+        Map<String, dynamic> userData = userDoc.data()!;
+        // Process the userData as needed
+      } else {
+        // User document does not exist
+        print('User not found');
+      }
+    } catch (error) {
+      // Handle any errors that occur during data fetching
+      print('Error fetching user data: $error');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +58,14 @@ class CurrentPlanScreen extends StatelessWidget {
         child: StreamBuilder<DocumentSnapshot>(
           stream: FirebaseFirestore.instance
               .collection('users')
-              .doc('userId') // Replace 'userId' with the actual user ID
+              .doc(uid) // Replace 'uid' with the actual user ID
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final data = snapshot.data!.data() as Map<String, dynamic>?;
               if (data != null) {
                 final subscriptionPlan =
-                    data['subscriptionPlan'] as String? ?? 'DormChef Free Plan';
+                    data['subscription'] as String? ?? 'DormChef Free Plan';
 
                 return Container(
                   width: 200,
@@ -52,11 +88,10 @@ class CurrentPlanScreen extends StatelessWidget {
                 );
               }
             }
-            return const CircularProgressIndicator();
+            return CircularProgressIndicator();
           },
         ),
       ),
     );
   }
 }
-
