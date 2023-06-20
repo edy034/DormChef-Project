@@ -5,7 +5,7 @@ class Users {
   String fullname = '';
   String email = '';
   String password = '';
-  String bio = '';
+  String bio = 'This person is lazy to set a bio';
   String phone = '';
   String subscription = 'free';
 
