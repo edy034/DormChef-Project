@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
+
+import 'package:dormchef/screens/recipe/add_recipe.dart';
+import 'package:dormchef/screens/user_homepage/home_main.dart';
 import 'package:dormchef/screens/user_profile/profile_page/profile_main.dart';
 
 class Navigation extends StatefulWidget {
@@ -18,18 +21,12 @@ class _NavigationState extends State<Navigation> {
       TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
 
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home',
-      style: optionStyle,
-    ),
+    HomeMain(),
     Text(
       'Search',
       style: optionStyle,
     ),
-    Text(
-      'Add',
-      style: optionStyle,
-    ),
+    AddRecipe(),
     Text(
       'Bookmark',
       style: optionStyle,
