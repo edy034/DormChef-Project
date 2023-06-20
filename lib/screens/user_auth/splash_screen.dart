@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushNamed(context, '/navigation');
+      Navigator.pushNamed(context, '/sign_in');
     });
   }
 
@@ -31,16 +31,16 @@ class _SplashScreenState extends State<SplashScreen> {
               style: GoogleFonts.manrope(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFF0B9A61),
+                color: const Color(0xFF0B9A61),
               ),
             ),
-            SizedBox(height: 8), //spacing between text and subtext
+            const SizedBox(height: 8), //spacing between text and subtext
             Text(
               'Recipe without limits',
               style: GoogleFonts.manrope(
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
-                color: Color(0xFF111111),
+                color: const Color(0xFF111111),
               ),
             ),
           ],
