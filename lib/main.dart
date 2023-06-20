@@ -12,10 +12,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(ChangeNotifierProvider(
-      create: (_) => UserProvider(),
+  String initialUid = 'AOZ1ngQoQaQkMCIUJTEPO2mkgVF3';
+
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => UserProvider(uid: initialUid),
       child: const MyApp(),
-    ),);
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -25,8 +29,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: _title, home: const SplashScreen(), 
-    routes: {
+    return MaterialApp(title: _title, home: const SplashScreen(), routes: {
       SplashScreen.routeName: (context) => const SplashScreen(),
       SignIn.routeName: (context) => const SignIn(),
       Navigation.routeName: (context) => const Navigation(),

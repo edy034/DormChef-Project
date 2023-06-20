@@ -1,8 +1,13 @@
 import 'package:dormchef/screens/text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class Heading extends StatelessWidget {
-  const Heading({super.key});
+  firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
+    .ref()
+    .child('your_folder_name')
+    .child('your_file_name.jpg');
+   Heading({super.key});
 
   @override
   Widget build(BuildContext context) {
