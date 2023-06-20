@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dormchef/screens/subscription/subForm.dart';
 import 'package:dormchef/screens/user_profile/profile_page/profile_main.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -351,6 +352,9 @@ class CurrentPlanScreen extends StatelessWidget {
   }
 }
 
+
+/*
+
 class SubForm extends StatefulWidget {
   const SubForm({Key? key}) : super(key: key);
 
@@ -460,3 +464,4 @@ class _SubFormState extends State<SubForm> {
   }
 }
 
+*/

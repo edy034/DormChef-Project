@@ -1,21 +1,73 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:dormchef/screens/subscription/subscription.dart';
-import 'package:dormchef/screens/subscription/CurrentPlanScreen.dart';
+import 'package:dormchef/screens/user_profile/profile_page/profile_main.dart';
+import 'package:flutter/material.dart';
+//import 'package:dormchef/screens/subscription/subscription.dart';
+//import 'package:dormchef/screens/subscription/CurrentPlanScreen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:dormchef/provider.dart';
 
-class SubForm extends StatelessWidget {
+class SubForm extends StatefulWidget {
   const SubForm({Key? key});
 
   @override
+  _SubFormState createState() => _SubFormState();
+}
+
+class _SubFormState extends State<SubForm> {
+  final _formKey = GlobalKey<FormState>();
+
+  final controller1 = TextEditingController();
+  final controller2 = TextEditingController();
+  final controller3 = TextEditingController();
+  final controller4 = TextEditingController();
+
+  late String uid;
+
+  @override
+  void initState() {
+    super.initState();
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    uid = userProvider.uid.toString();
+  }
+
+  @override
+  void dispose() {
+    controller1.dispose();
+    controller2.dispose();
+    controller3.dispose();
+    controller4.dispose();
+    super.dispose();
+  }
+
+  Future<void> createCard({
+    required String cardNo,
+    required String cardName,
+    required String expiryDate,
+    required String secCode,
+  }) async {
+    final cardoc = FirebaseFirestore.instance.collection('cardDetails').doc();
+
+    final cardDetails = Card(
+      id: cardoc.id,
+      cardName: cardName,
+      cardNo: cardNo,
+      expiryDate: expiryDate,
+      secCode: secCode,
+    );
+
+    final cardJson = cardDetails.toJson();
+
+   // await cardoc.set(cardJson);
+
+    // Update the user's subscription plan to premium in the 'users' collection
+    final userDoc = FirebaseFirestore.instance.collection('users').doc(uid);
+    await userDoc.update({'subscription': 'Dorm Chef Premium Plan'});
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
-
-    final controller1 = TextEditingController();
-    final controller2 = TextEditingController();
-    final controller3 = TextEditingController();
-    final controller4 = TextEditingController();
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -36,50 +88,40 @@ class SubForm extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Padding(padding: EdgeInsets.only(top: 30)),
-              Text(
-                "Your Plan",
-                style: GoogleFonts.manrope(
-                  fontSize: 24,
+              const Text(
+                "    Your Plan",
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF0B9A61),
+                  fontSize: 20,
                 ),
               ),
-              Row(
+              const Row(
                 children: [
                   Text(
-                    "RM",
-                    style: GoogleFonts.manrope(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF0B9A61),
+                    "     RM",
+                    style: TextStyle(
+                      fontSize: 20,
                     ),
                   ),
                   Text(
                     " 7.99",
-                    style: GoogleFonts.manrope(
-                      fontSize: 24,
+                    style: TextStyle(
+                      fontSize: 35,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF0B9A61),
+                      height: 2,
                     ),
                   ),
                   Text(
                     " /month",
-                    style: GoogleFonts.manrope(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF0B9A61),
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.grey,
+                      height: 3,
                     ),
                   ),
                 ],
               ),
-              Text(
-                "Cancel Anytime",
-                style: GoogleFonts.manrope(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF0B9A61),
-                ),
-              ),
+              const Text("     Cancel Anytime"),
               Row(
                 children: [
                   const Padding(padding: EdgeInsets.only(left: 15)),
@@ -89,55 +131,27 @@ class SubForm extends StatelessWidget {
                     width: 80,
                   ),
                   const SizedBox(width: 16),
-                  Column(
+                  const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(padding: EdgeInsets.only(top: 26)),
-                      Text(
-                        "DormChef Premium Plan",
-                        style: GoogleFonts.manrope(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
+                      Text("DormChef Premium Plan"),
                       Row(
                         children: [
-                          Icon(Icons.star, color: Colors.green),
-                          Text(
-                            "Everything in Free Plan",
-                            style: GoogleFonts.manrope(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.grey[800],
-                            ),
-                          ),
+                          Icon(Icons.star),
+                          Text("Everything in Free Plan"),
                         ],
                       ),
                       Row(
                         children: [
-                          Icon(Icons.star, color: Colors.green),
-                          Text(
-                            "Access to more recipes",
-                            style: GoogleFonts.manrope(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.grey[800],
-                            ),
-                          ),
+                          Icon(Icons.star),
+                          Text("Access to more recipes"),
                         ],
                       ),
                       Row(
                         children: [
-                          Icon(Icons.star, color: Colors.green),
-                          Text(
-                            "Upload recipe publicly",
-                            style: GoogleFonts.manrope(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.grey[800],
-                            ),
-                          ),
+                          Icon(Icons.star),
+                          Text("Upload recipe publicly"),
                         ],
                       ),
                     ],
@@ -149,12 +163,11 @@ class SubForm extends StatelessWidget {
                 thickness: 1,
                 height: 10,
               ),
-              Text(
-                "Credit Card Details",
-                style: GoogleFonts.manrope(
-                  fontSize: 24,
+              const Text(
+                "     Credit Card Details",
+                style: TextStyle(
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF0B9A61),
                 ),
               ),
               Container(
@@ -162,14 +175,7 @@ class SubForm extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Card number",
-                      style: GoogleFonts.manrope(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF0B9A61),
-                      ),
-                    ),
+                    Text("Card number"),
                     Padding(padding: EdgeInsets.only(top: 10)),
                     SizedBox(
                       height: 40,
@@ -190,14 +196,7 @@ class SubForm extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Name on card",
-                      style: GoogleFonts.manrope(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF0B9A61),
-                      ),
-                    ),
+                    Text("Name on card"),
                     Padding(padding: EdgeInsets.only(top: 10)),
                     SizedBox(
                       height: 40,
@@ -221,14 +220,7 @@ class SubForm extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "Expiry date",
-                            style: GoogleFonts.manrope(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF0B9A61),
-                            ),
-                          ),
+                          Text("Expiry date"),
                           Padding(padding: EdgeInsets.only(top: 10)),
                           SizedBox(
                             height: 40,
@@ -248,14 +240,7 @@ class SubForm extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "Security Code",
-                            style: GoogleFonts.manrope(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF0B9A61),
-                            ),
-                          ),
+                          Text("Security Code"),
                           Padding(padding: EdgeInsets.only(top: 10)),
                           SizedBox(
                             height: 40,
@@ -296,43 +281,26 @@ class SubForm extends StatelessWidget {
                         );
 
                         // Navigating to the next screen after updating the user's plan
-                     /*   Navigator.of(context).push(
+                        Navigator.of(context).push(
                           MaterialPageRoute(
-                          //  builder: (context) => const CurrentPlanScreen(),
+                            builder: (context) => const CurrentPlanScreen(),
                           ),
-                        );*/
+                        );
                       }
                     },
-                    child: Text(
-                      'Continue',
-                      style: GoogleFonts.manrope(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF0B9A61),
-                      ),
-                    ),
+                    child: const Text('Continue'),
                   ),
                 ),
               ),
-              Center(
+              const Center(
                 child: Column(
                   children: [
                     Padding(padding: EdgeInsets.only(top: 10)),
                     Text(
-                      "If the price changes, we’ll notify before hand. You can check ",
-                      style: GoogleFonts.manrope(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF0B9A61),
-                      ),
+                      "If the price changes, we’ll notify beforehand. You can check ",
                     ),
                     Text(
                       "your renewal date or cancel anytime at Account Page.",
-                      style: GoogleFonts.manrope(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF0B9A61),
-                      ),
                     ),
                   ],
                 ),
@@ -342,30 +310,6 @@ class SubForm extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<void> createCard(
-      {required String cardNo, cardName, expiryDate, secCode}) async {
-    final cardoc = FirebaseFirestore.instance.collection('cardDetails').doc();
-    //  final userId = FirebaseAuth.instance.currentUser!.uid; // get the current user's ID here
-    // final userId = FirebaseFirestore.instance.collection('users').doc(userId);
-
-    final cardDetails = Card(
-      id: cardoc.id,
-      cardName: cardName,
-      cardNo: cardNo,
-      expiryDate: expiryDate,
-      secCode: secCode,
-    );
-
-    final cardJson = cardDetails.toJson();
-
-    await cardoc.set(cardJson);
-
-    // Update the user's subscription plan to premium in the 'users' collection
-    final userDoc =
-        FirebaseFirestore.instance.collection('users').doc("userId");
-    await userDoc.update({'subscriptionPlan': 'Dorm Chef Premium Plan'});
   }
 }
 
