@@ -3,7 +3,6 @@ class Users {
   String uid = '';
   String username = '';
   String fullname = '';
-  String name = '';
   String email = '';
   String password = '';
   String bio = '';
@@ -59,10 +58,6 @@ class Users {
     return username;
   }
 
-  String getFullname() {
-    return fullname;
-  }
-
   String getName() {
     return name;
   }
@@ -95,7 +90,6 @@ class Users {
       'password': password,
       'username': username,
       'fullname': fullname,
-      'name': name,
       'bio': bio,
       'phone': phone,
       'subscription': subscription,

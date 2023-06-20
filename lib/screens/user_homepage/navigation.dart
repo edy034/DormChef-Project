@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
-import 'package:dormchef/screens/user_profile/profile_main.dart';
+
 import 'package:dormchef/screens/recipe/add_recipe.dart';
 import 'package:dormchef/screens/user_homepage/home_main.dart';
+import 'package:dormchef/screens/user_profile/profile_page/profile_main.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({Key? key}) : super(key: key);

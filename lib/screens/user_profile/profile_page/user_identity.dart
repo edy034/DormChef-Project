@@ -61,7 +61,7 @@ class _UserIdentityState extends State<UserIdentity> {
                 alignment: Alignment.center,
                 child: CircleAvatar(
                   radius: 64,
-                  backgroundImage: AssetImage('assets/hafiz.jpg'),
+                  backgroundImage: AssetImage('images/hafiz.jpg'),
                 ),
               ),
             ),

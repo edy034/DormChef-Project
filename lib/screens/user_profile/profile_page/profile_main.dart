@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:dormchef/screens/user_profile/user_identity.dart';
-import 'package:dormchef/screens/user_profile/profile_overview.dart';
-import 'package:dormchef/screens/user_profile/user_plan.dart';
-import 'package:dormchef/screens/user_profile/report_issue.dart';
+import 'package:dormchef/screens/user_profile/profile_page/user_identity.dart';
+import 'package:dormchef/screens/user_profile/profile_page/profile_overview.dart';
+import 'package:dormchef/screens/user_profile/profile_page/user_plan.dart';
+import 'package:dormchef/screens/user_profile/profile_page/report_issue.dart';
 
 class ProfileMain extends StatefulWidget {
   const ProfileMain({Key? key}) : super(key: key);
