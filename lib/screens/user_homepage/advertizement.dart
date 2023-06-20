@@ -23,7 +23,7 @@ class Advertizement extends StatelessWidget {
                     blurRadius: 4,
                     offset: const Offset(0, 4))
               ]),
-          child: Image.asset("assets/ads.jpg", fit: BoxFit.cover),
+          child: Image.asset("images/ads.jpg", fit: BoxFit.cover),
         ),
       ),
     );

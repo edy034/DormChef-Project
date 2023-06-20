@@ -38,7 +38,7 @@ class Heading extends StatelessWidget {
             },
             child: const CircleAvatar(
               radius: 24,
-              backgroundImage: AssetImage('assets/hafiz.jpg'),
+              backgroundImage: AssetImage('images/hafiz.jpg'),
             ),
           ),
         ],

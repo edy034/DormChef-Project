@@ -25,10 +25,6 @@ class Users {
     this.fullname = fullname;
   }
 
-  void setName(String name) {
-    this.name = name;
-  }
-
   void setEmail(String email) {
     this.email = email;
   }
@@ -56,10 +52,6 @@ class Users {
 
   String getUsername() {
     return username;
-  }
-
-  String getName() {
-    return name;
   }
 
   String getEmail() {

@@ -11,17 +11,17 @@ class Recipes extends StatelessWidget {
     // TODO: get from database
     return [
       Recipe(
-          image: "nasi goreng sardin.png",
+          image: "images/nasi-goreng-sardin.png",
           title: "Nasi Goreng Sardin",
           userId: '@monica',
           userName: "Monica Jenkins",
-          userProfile: "monica.png"),
+          userProfile: "images/monica.png"),
       Recipe(
-          image: "maggie kari cheese.JPG",
+          image: "images/maggie-kari-cheese.jpeg",
           title: "Maggie Kari Cheese",
           userId: '@adammalik',
           userName: "Adam Malik",
-          userProfile: "adam_malik.jpg"),
+          userProfile: "images/adam_malik.jpg"),
     ];
   }
 
@@ -68,7 +68,7 @@ class Recipes extends StatelessWidget {
               height: 240,
               child: FutureBuilder(
                 future: _getRecipes(),
-                initialData: [],
+                initialData: const [],
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   return ListView.separated(
                       padding: const EdgeInsets.symmetric(horizontal: 24),

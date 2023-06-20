@@ -171,7 +171,7 @@ class _SignUpState extends State<SignUp> {
               onTap: () => {
                 // Assign the value of the email, password and username to the user object
                 authController.registerUser(emailController.text,
-                    passwordController.text, usernameController.text),
+                    passwordController.text, usernameController.text, fullnameController.text),
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => const Navigation()))
               },
