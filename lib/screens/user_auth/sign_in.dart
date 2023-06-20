@@ -92,6 +92,7 @@ class _SignInState extends State<SignIn> {
                 "Don't have an account?",
                 style:
                     ManropeTextStyles.textStyle(color: const Color(0xFF111111)),
+
               ),
               const SizedBox(width: 4),
               GestureDetector(

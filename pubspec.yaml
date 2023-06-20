@@ -39,7 +39,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   cloud_firestore: ^4.8.0
   firebase_auth: ^4.6.2
+  image_picker: ^0.8.7+5
   google_sign_in: ^6.1.4
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:
@@ -63,7 +65,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

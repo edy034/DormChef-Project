@@ -3,16 +3,16 @@ import 'package:dormchef/models/users.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-
+import 'package:provider/provider.dart';
 import '../../screens/user_homepage/navigation.dart';
+import '../../provider.dart';
 
 class AuthController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<void> registerUser(
-      String email, String password, String username) async {
+      String email, String password, String username, String fullname) async {
     // Create a new user object
     Users user = Users();
 
@@ -20,6 +20,7 @@ class AuthController {
     user.setEmail(email);
     user.setPassword(password);
     user.setUsername(username);
+    user.setFullname(fullname);
 
     // Create a new user in Firebase Authentication
     try {
@@ -38,9 +39,9 @@ class AuthController {
         await _firestore.collection('users').doc(firebaseUser.uid).set(userMap);
       }
     } catch (error) {
-      if (kDebugMode) {
+      
+        // ignore: avoid_print
         print("Error in creating user: $error");
-      }
     }
   }
 
@@ -51,10 +52,19 @@ class AuthController {
         email.contains('@') &&
         email.contains('.')) {
       try {
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
+        final userCredential =
+            await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: email,
           password: password,
         );
+
+        // ignore: use_build_context_synchronously
+        final userProvider = Provider.of<UserProvider>(context, listen: false);
+        userProvider.setUID(userCredential.user!.uid);
+
+        // ignore: avoid_print
+        print(userCredential.user!.uid);
+
         // ignore: use_build_context_synchronously
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const Navigation()));
@@ -65,9 +75,7 @@ class AuthController {
           ),
         );
       }
-    }
-    else
-    {
+    } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Invalid email or password'),

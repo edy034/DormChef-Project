@@ -6,8 +6,9 @@ class CustomTextFieldContainer extends StatelessWidget {
   final String hintText;
   final String textLabel;
   final double spacing;
+  final bool readOnly;
 
-  const CustomTextFieldContainer({Key? key,required this.textLabel, required this.controller, required this.hintText, this.spacing = 12}) : super(key: key);
+  const CustomTextFieldContainer({Key? key,required this.textLabel, required this.controller, required this.hintText, this.spacing = 12, this.readOnly = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
