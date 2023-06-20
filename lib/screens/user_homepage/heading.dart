@@ -1,16 +1,21 @@
 import 'package:dormchef/screens/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:provider/provider.dart';
+
+import '../../provider.dart';
 
 class Heading extends StatelessWidget {
-  firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
-    .ref()
-    .child('your_folder_name')
-    .child('your_file_name.jpg');
-   Heading({super.key});
+  const Heading({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final uid = context.watch<UserProvider>().uid;
+    print(uid);
+
+    final storage = firebase_storage.FirebaseStorage.instance;
+    final ref = storage.ref().child('users/$uid/profile.jpg');
+
     return Padding(
       padding: const EdgeInsets.only(top: 72, left: 24, right: 24),
       child: Row(
@@ -37,7 +42,26 @@ class Heading extends StatelessWidget {
             ],
           ),
           const Spacer(),
-          GestureDetector(
+          FutureBuilder<firebase_storage.FullMetadata>(
+            future: ref.getMetadata(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                // Image metadata is available
+                final ref = snapshot.data!;
+                return CircleAvatar(
+                  radius: 24,
+                  backgroundImage: NetworkImage(ref.getDownloadURL()),
+                );
+              } else if (snapshot.hasError) {
+                // Error occurred while retrieving metadata
+                return Icon(Icons.error);
+              } else {
+                // Still loading the metadata
+                return CircularProgressIndicator();
+              }
+            },
+          )
+          /*GestureDetector(
             onTap: () {
               // TODO: Do something when avatar clicked
             },
@@ -45,7 +69,7 @@ class Heading extends StatelessWidget {
               radius: 24,
               backgroundImage: AssetImage('images/hafiz.jpg'),
             ),
-          ),
+          ),*/
         ],
       ),
     );
