@@ -127,7 +127,7 @@ class _SignUpState extends State<SignUp> {
           padding: const EdgeInsets.only(top: 24.0),
           child: CustomTextFieldContainer(
             textLabel: 'Full Name',
-            controller: usernameController,
+            controller: fullnameController,
             hintText: 'Hafiz Ahmad bin Fauzi',
           ),
         ),
@@ -170,10 +170,10 @@ class _SignUpState extends State<SignUp> {
             GestureDetector(
               onTap: () => {
                 // Assign the value of the email, password and username to the user object
-                authController.registerUser(emailController.text,
+                authController.validateRegisterInput(context, emailController.text,
                     passwordController.text, usernameController.text, fullnameController.text),
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Navigation()))
+                    MaterialPageRoute(builder: (context) => const SignIn()))
               },
               child: Container(
                   width: 364.0,
