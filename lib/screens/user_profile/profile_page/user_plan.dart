@@ -19,11 +19,11 @@ class _UserPlanState extends State<UserPlan> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Align(
+      alignment: Alignment.center,
+      child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-
         // This is the widget for the active plan
         Text(
           'Active Plan',
@@ -144,6 +144,7 @@ class _UserPlanState extends State<UserPlan> {
               )),
         ),
       ],
+    ),
     );
   }
 }
