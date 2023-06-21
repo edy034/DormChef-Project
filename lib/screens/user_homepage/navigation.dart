@@ -60,10 +60,10 @@ class _NavigationState extends State<Navigation> {
             icon: Icon(Iconsax.add_square),
             label: 'Add',
           ),
-          BottomNavigationBarItem(
+          /*BottomNavigationBarItem(
             icon: Icon(Iconsax.bookmark),
             label: 'Bookmark',
-          ),
+          ),*/
           BottomNavigationBarItem(
             icon: Icon(Iconsax.user),
             label: 'Profile',
