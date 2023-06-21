@@ -139,7 +139,7 @@ class _SubscriptionState extends State<Subscription> {
                           width: 60,
                         ),
                         const SizedBox(width: 16),
-                        const Column(
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -160,7 +160,7 @@ class _SubscriptionState extends State<Subscription> {
                       ],
                     ),
                     const Padding(padding: EdgeInsets.only(top: 20)),
-                    const Column(
+                    Column(
                       children: [
                         Row(
                           children: [
@@ -226,7 +226,7 @@ class _SubscriptionState extends State<Subscription> {
                           width: 60,
                         ),
                         const SizedBox(width: 16),
-                        const Column(
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -247,7 +247,7 @@ class _SubscriptionState extends State<Subscription> {
                       ],
                     ),
                     const Padding(padding: EdgeInsets.only(top: 20)),
-                    const Column(
+                    Column(
                       children: [
                         Row(
                           children: [

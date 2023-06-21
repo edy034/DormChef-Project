@@ -95,7 +95,7 @@ class _SubFormState extends State<SubForm> {
                   fontSize: 20,
                 ),
               ),
-              const Row(
+              Row(
                 children: [
                   Text(
                     "     RM",
@@ -131,7 +131,7 @@ class _SubFormState extends State<SubForm> {
                     width: 80,
                   ),
                   const SizedBox(width: 16),
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(padding: EdgeInsets.only(top: 26)),
@@ -292,7 +292,7 @@ class _SubFormState extends State<SubForm> {
                   ),
                 ),
               ),
-              const Center(
+              Center(
                 child: Column(
                   children: [
                     Padding(padding: EdgeInsets.only(top: 10)),

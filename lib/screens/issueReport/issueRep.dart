@@ -45,7 +45,7 @@ class _IssueRepState extends State<IssueRep> {
           children: [
             const Padding(padding: EdgeInsets.only(top: 40)),
             const Text("     Quick Access"),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Row(
