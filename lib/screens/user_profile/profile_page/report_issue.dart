@@ -1,21 +1,17 @@
-import 'package:dormchef/screens/issueReport/issueRep.dart';
 import 'package:flutter/material.dart';
 import 'package:dormchef/screens/text_style.dart';
 
-class ReportIssue extends StatelessWidget {
+class ReportIssue extends StatefulWidget {
   const ReportIssue({Key? key}) : super(key: key);
 
   @override
+  State<ReportIssue> createState() => _ReportIssueState();
+}
+
+class _ReportIssueState extends State<ReportIssue> {
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        // Handle button click and navigate to another page
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => IssueRep()),
-        );
-      },
-      child: Align(
+    return Align(
         alignment: Alignment.center,
         child: Container(
           width: 368.0,
@@ -38,8 +34,6 @@ class ReportIssue extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

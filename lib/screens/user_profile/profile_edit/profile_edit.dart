@@ -48,7 +48,6 @@ class _ProfilePageState extends State<ProfilePage> {
   Future<void> updateUserData(String uid) async {
     try {
       final userDoc = FirebaseFirestore.instance.collection('users').doc(uid);
-     // print("hai:"+uid);
       await userDoc.update({
         'fullname': _fullNameController.text,
         'phone': _phoneController.text,
@@ -68,7 +67,6 @@ class _ProfilePageState extends State<ProfilePage> {
     super.initState();
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     final String uid = userProvider.uid.toString();
-   // print("hai:"+uid);
     fetchUserData(uid);
 
   }
