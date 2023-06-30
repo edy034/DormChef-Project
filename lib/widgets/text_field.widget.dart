@@ -40,6 +40,7 @@ class CustomTextFieldContainer extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 16.0),
               child: TextField(
+                enabled: readOnly ? false : true,
                 controller: controller,
                 style: const TextStyle(
                   color: Color(0xFF444444),
@@ -66,8 +67,9 @@ class CustomPasswordTextFieldContainer extends StatefulWidget {
   final String hintText;
   final String textLabel;
   final double spacing;
+  final bool readOnly;
 
-  const CustomPasswordTextFieldContainer({Key? key, required this.textLabel, required this.controller, required this.hintText, this.spacing = 12,}) : super(key: key);
+  const CustomPasswordTextFieldContainer({Key? key, required this.textLabel, required this.controller, required this.hintText, this.spacing = 12, this.readOnly = false}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -81,6 +83,7 @@ class _CustomPasswordTextFieldContainerState
 
   @override
   Widget build(BuildContext context) {
+    bool readOnly = widget.readOnly;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -109,6 +112,7 @@ class _CustomPasswordTextFieldContainerState
             child: Padding(
               padding: const EdgeInsets.only(left: 16.0),
               child: TextFormField(
+                enabled: readOnly ? false : true,
                 controller: widget.controller,
                 obscureText: !_isPasswordVisible,
                 style: const TextStyle(

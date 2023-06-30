@@ -1,19 +1,51 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:dormchef/models/users.dart';
 
 class AuthenticationService {
   static FirebaseAuth auth = FirebaseAuth.instance;
+  static FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   static Future<String?> signIn(String email, String password) async {
     try {
       await auth.signInWithEmailAndPassword(email: email, password: password);
       return 'Sign in successful';
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        return 'No user found for that email';
+      } else if (e.code == 'wrong-password') {
+        return 'Wrong password provided for that user';
+      } else if (e.code == 'invalid-email') {
+        return 'Invalid email provided';
+      }
+      rethrow;
+    }
+    catch (e) {
       return 'Sign in failed. Please check your credentials';
     }
   }
 
-  static Future<UserCredential> signUp(String email, String password) async {
-    return await auth.createUserWithEmailAndPassword(email: email, password: password);
+  static Future<String?> signUp(String email, String password, String username,
+      String firstname, String lastName) async {
+    try {
+      await auth.createUserWithEmailAndPassword(email: email, password: password);
+      User? firebaseUser = auth.currentUser;
+      if (firebaseUser != null) {
+        Users user = Users(firebaseUser.uid, username, firstname, lastName, email, password, 'This person is lazy to set a bio', '', 'Free Plan');
+        Map<String, dynamic> userMap = user.toMap();
+        await firestore.collection('users').doc(firebaseUser.uid).set(userMap);
+      }
+      return 'Sign up successful';
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        return 'The password provided is too weak';
+      } else if (e.code == 'email-already-in-use') {
+        return 'The account already exists for that email';
+      }
+      rethrow;
+    } catch (e) {
+      return 'Sign up failed. Please check your credentials';
+    }
   }
 
   static Future<void> signOut() async {

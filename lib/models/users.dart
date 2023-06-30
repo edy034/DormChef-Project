@@ -2,7 +2,8 @@ class Users {
   // Properties
   String uid = '';
   String username = '';
-  String fullname = '';
+  String firstname = '';
+  String lastname = '';
   String email = '';
   String password = '';
   String bio = 'This person is lazy to set a bio';
@@ -10,7 +11,8 @@ class Users {
   String subscription = 'free';
 
   // Constructor
-  Users();
+  Users(this.uid, this.username, this.firstname, this.lastname,
+      this.email, this.password, this.bio, this.phone, this.subscription);
 
   // Setters
   void setUid(String uid) {
@@ -21,8 +23,12 @@ class Users {
     this.username = username;
   }
 
-  void setFullname(String fullname) {
-    this.fullname = fullname;
+  void setFirstname(String firstname) {
+    this.firstname = firstname;
+  }
+
+  void setLastname(String lastname) {
+    this.lastname = lastname;
   }
 
   void setEmail(String email) {
@@ -54,6 +60,14 @@ class Users {
     return username;
   }
 
+  String getFirstname() {
+    return firstname;
+  }
+
+  String getLastname() {
+    return lastname;
+  }
+
   String getEmail() {
     return email;
   }
@@ -81,7 +95,7 @@ class Users {
       'email': email,
       'password': password,
       'username': username,
-      'fullname': fullname,
+      'fullname': '$firstname $lastname',
       'bio': bio,
       'phone': phone,
       'subscription': subscription,
