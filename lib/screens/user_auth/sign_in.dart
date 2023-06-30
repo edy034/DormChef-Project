@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dormchef/screens/user_auth/sign_up.dart';
-import 'package:dormchef/screens/text_style.dart';
+import 'package:dormchef/widgets/text_style.widget.dart';
 import 'package:dormchef/controllers/user_auth/auth_controller.dart';
-import 'package:dormchef/screens/input_text.dart';
+import 'package:dormchef/widgets/text_field.widget.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -30,7 +30,7 @@ class _SignInState extends State<SignIn> {
           padding: const EdgeInsets.only(top: 156.0),
           child: Text(
             'DormChef',
-            style: ManropeTextStyles.textStyle(
+              style: ManropeTextStyles.textStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
               color: const Color(0xFF0B9A61),

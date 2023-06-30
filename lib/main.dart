@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dormchef/database/firebase_options.dart';
+import 'package:dormchef/services/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:dormchef/screens/user_auth/splash_screen.dart';
 import 'package:dormchef/screens/user_auth/sign_in.dart';

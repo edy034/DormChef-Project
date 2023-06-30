@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dormchef/screens/user_auth/sign_in.dart';
 import 'package:dormchef/screens/user_homepage/navigation.dart';
-import 'package:dormchef/screens/text_style.dart';
+import 'package:dormchef/widgets/text_style.widget.dart';
 import 'package:dormchef/controllers/user_auth/auth_controller.dart';
-import 'package:dormchef/screens/input_text.dart';
+import 'package:dormchef/widgets/text_field.widget.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);

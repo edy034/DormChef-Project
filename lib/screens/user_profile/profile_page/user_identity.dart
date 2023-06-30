@@ -2,7 +2,7 @@
 
   import 'package:cloud_firestore/cloud_firestore.dart';
   import 'package:flutter/material.dart';
-  import 'package:dormchef/screens/text_style.dart';
+  import 'package:dormchef/widgets/text_style.widget.dart';
   import 'package:provider/provider.dart';
 
   import '../../../provider.dart';
