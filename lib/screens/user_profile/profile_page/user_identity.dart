@@ -5,7 +5,7 @@
   import 'package:dormchef/widgets/text_style.widget.dart';
   import 'package:provider/provider.dart';
 
-  import '../../../provider.dart';
+  import '../../../services/provider.service.dart';
 
   class UserIdentity extends StatefulWidget {
     const UserIdentity({Key? key}) : super(key: key);

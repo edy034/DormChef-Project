@@ -5,14 +5,13 @@ class Users {
   String firstname = '';
   String lastname = '';
   String email = '';
-  String password = '';
   String bio = 'This person is lazy to set a bio';
   String phone = '';
   String subscription = 'free';
 
   // Constructor
   Users(this.uid, this.username, this.firstname, this.lastname,
-      this.email, this.password, this.bio, this.phone, this.subscription);
+      this.email, this.bio, this.phone, this.subscription);
 
   // Setters
   void setUid(String uid) {
@@ -33,10 +32,6 @@ class Users {
 
   void setEmail(String email) {
     this.email = email;
-  }
-
-  void setPassword(String password) {
-    this.password = password;
   }
 
   void setBio(String bio) {
@@ -72,10 +67,6 @@ class Users {
     return email;
   }
 
-  String getPassword() {
-    return password;
-  }
-
   String getBio() {
     return bio;
   }
@@ -93,7 +84,6 @@ class Users {
     return {
       'uid': uid,
       'email': email,
-      'password': password,
       'username': username,
       'fullname': '$firstname $lastname',
       'bio': bio,

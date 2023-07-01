@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dormchef/models/users.dart';
+import 'package:dormchef/services/provider.service.dart';
 
 class AuthenticationService {
   static FirebaseAuth auth = FirebaseAuth.instance;
@@ -8,7 +9,13 @@ class AuthenticationService {
 
   static Future<String?> signIn(String email, String password) async {
     try {
-      await auth.signInWithEmailAndPassword(email: email, password: password);
+      final UserCredential userCredential = await auth
+          .signInWithEmailAndPassword(email: email, password: password);
+      final User? user = userCredential.user;
+      if (user != null) {
+        UserProvider userProvider = UserProvider();
+        userProvider.setUID(user.uid);
+      }
       return 'Sign in successful';
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -19,19 +26,20 @@ class AuthenticationService {
         return 'Invalid email provided';
       }
       rethrow;
-    }
-    catch (e) {
-      return 'Sign in failed. Please check your credentials';
+    } catch (e) {
+      return e.toString();
     }
   }
 
   static Future<String?> signUp(String email, String password, String username,
       String firstname, String lastName) async {
     try {
-      await auth.createUserWithEmailAndPassword(email: email, password: password);
+      await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
       User? firebaseUser = auth.currentUser;
       if (firebaseUser != null) {
-        Users user = Users(firebaseUser.uid, username, firstname, lastName, email, password, 'This person is lazy to set a bio', '', 'Free Plan');
+        Users user = Users(firebaseUser.uid, username, firstname, lastName,
+            email, 'This person is lazy to set a bio', '', 'Free Plan');
         Map<String, dynamic> userMap = user.toMap();
         await firestore.collection('users').doc(firebaseUser.uid).set(userMap);
       }

@@ -6,16 +6,16 @@ import 'package:dormchef/screens/user_auth/sign_in.dart';
 import 'package:dormchef/screens/user_homepage/navigation.dart';
 import 'package:dormchef/screens/user_profile/profile_edit/profile_edit.dart';
 import 'package:provider/provider.dart';
-import 'package:dormchef/provider.dart';
+import 'package:dormchef/services/provider.service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(ChangeNotifierProvider(
-      create: (_) => UserProvider(),
-      child: const MyApp(),
-    ),);
+  runApp(
+    ChangeNotifierProvider(
+        create: (_) => UserProvider(), child: const MyApp())
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -25,12 +25,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: _title, home: const SplashScreen(), 
-    routes: {
-      SplashScreen.routeName: (context) => const SplashScreen(),
-      SignIn.routeName: (context) => const SignIn(),
-      Navigation.routeName: (context) => const Navigation(),
-      ProfilePage.routeName: (context) => const ProfilePage(),
-    });
+    UserProvider userProvider = Provider.of<UserProvider>(context);
+    return MaterialApp(
+        title: _title,
+        home: userProvider.uid != null ? const Navigation() : const SplashScreen(),
+        routes: {
+          SplashScreen.routeName: (context) => const SplashScreen(),
+          SignIn.routeName: (context) => const SignIn(),
+          Navigation.routeName: (context) => const Navigation(),
+          ProfilePage.routeName: (context) => const ProfilePage(),
+        });
   }
 }
