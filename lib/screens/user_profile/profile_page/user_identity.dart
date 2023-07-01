@@ -18,6 +18,8 @@ class UserIdentity extends StatefulWidget {
 
 class _UserIdentityState extends State<UserIdentity> {
   File? profilePicture;
+  String? firstname;
+  String? lastname;
   String? fullname;
   String? username;
   String? bio;
@@ -30,9 +32,11 @@ class _UserIdentityState extends State<UserIdentity> {
         Map<String, dynamic> userData = userDoc.data()!;
         // Process the userData as needed
         setState(() {
-          fullname = userData['fullname'];
+          firstname = userData['firstname'];
+          lastname = userData['lastname'];
           username = userData['username'];
           bio = userData['bio'];
+          fullname = '$firstname $lastname';
         });
       } else {
         // User document does not exist
