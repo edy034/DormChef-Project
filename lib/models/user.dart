@@ -10,8 +10,10 @@ class Users {
   String subscription = 'free';
 
   // Constructor
-  Users(this.uid, this.username, this.firstname, this.lastname,
-      this.email, this.bio, this.phone, this.subscription);
+  Users();
+  Users.withName(this.uid, this.username, this.firstname, this.lastname, this.email,
+      this.bio, this.phone, this.subscription);
+
 
   // Setters
   void setUid(String uid) {
@@ -90,5 +92,18 @@ class Users {
       'phone': phone,
       'subscription': subscription,
     };
+  }
+
+  static Users fromJson(jsonDecode) {
+    Users user = Users();
+    user.setUid(jsonDecode['uid']);
+    user.setUsername(jsonDecode['username']);
+    user.setFirstname(jsonDecode['firstname']);
+    user.setLastname(jsonDecode['lastname']);
+    user.setEmail(jsonDecode['email']);
+    user.setBio(jsonDecode['bio']);
+    user.setPhone(jsonDecode['phone']);
+    user.setSubscription(jsonDecode['subscription']);
+    return user;
   }
 }

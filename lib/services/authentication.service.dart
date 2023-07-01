@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:dormchef/models/users.dart';
+import 'package:dormchef/models/user.dart';
 import 'package:dormchef/services/provider.service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +18,6 @@ class AuthenticationService {
         // ignore: use_build_context_synchronously
         UserProvider userProvider = Provider.of<UserProvider>(context, listen: false);
         userProvider.setUID(user.uid);
-        print(userProvider.uid);
       }
       return 'Sign in successful';
     } on FirebaseAuthException catch (e) {
@@ -35,7 +34,6 @@ class AuthenticationService {
     }
   }
   
-
   static Future<String?> signUp(String email, String password, String username,
       String firstname, String lastName) async {
     try {
@@ -43,7 +41,7 @@ class AuthenticationService {
           email: email, password: password);
       User? firebaseUser = auth.currentUser;
       if (firebaseUser != null) {
-        Users user = Users(firebaseUser.uid, username, firstname, lastName,
+        Users user = Users.withName(firebaseUser.uid, username, firstname, lastName,
             email, 'This person is lazy to set a bio', '', 'Free Plan');
         Map<String, dynamic> userMap = user.toMap();
         await firestore.collection('users').doc(firebaseUser.uid).set(userMap);
