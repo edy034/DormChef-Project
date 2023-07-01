@@ -1,5 +1,5 @@
 import 'package:dormchef/models/category.dart';
-import 'package:dormchef/screens/text_style.dart';
+import 'package:dormchef/widgets/text_style.widget.dart';
 import 'package:dormchef/widgets/category.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
