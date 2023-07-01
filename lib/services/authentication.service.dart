@@ -2,19 +2,23 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dormchef/models/users.dart';
 import 'package:dormchef/services/provider.service.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AuthenticationService {
   static FirebaseAuth auth = FirebaseAuth.instance;
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  static Future<String?> signIn(String email, String password) async {
+  static Future<String?> signIn(String email, String password, BuildContext context) async {
     try {
       final UserCredential userCredential = await auth
           .signInWithEmailAndPassword(email: email, password: password);
       final User? user = userCredential.user;
       if (user != null) {
-        UserProvider userProvider = UserProvider();
+        // ignore: use_build_context_synchronously
+        UserProvider userProvider = Provider.of<UserProvider>(context, listen: false);
         userProvider.setUID(user.uid);
+        print(userProvider.uid);
       }
       return 'Sign in successful';
     } on FirebaseAuthException catch (e) {
@@ -30,6 +34,7 @@ class AuthenticationService {
       return e.toString();
     }
   }
+  
 
   static Future<String?> signUp(String email, String password, String username,
       String firstname, String lastName) async {

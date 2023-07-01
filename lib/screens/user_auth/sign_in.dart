@@ -69,7 +69,7 @@ class _SignInState extends State<SignIn> {
               if (emailController.text.isNotEmpty ||
                   passwordController.text.isNotEmpty) {
                 String? message = await AuthenticationService.signIn(
-                    emailController.text, passwordController.text) as String;
+                    emailController.text, passwordController.text, context) as String;
                 if (message.contains('success')) {
                   // ignore: use_build_context_synchronously
                   Navigator.pushNamed(context, '/navigation');
