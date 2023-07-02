@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dormchef/widgets/text_style.widget.dart';
 import 'package:dormchef/services/profile.service.dart';
+import 'package:dormchef/services/storage.service.dart';
 import 'package:dormchef/models/user.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -98,14 +99,18 @@ class _UserIdentityState extends State<UserIdentity> {
         // This container is used to contain the profile picture, username and bio.
         Column(
           children: [
-            const SizedBox(
+            SizedBox(
               // This container is used to contain the profile picture.
               child: Align(
                 alignment: Alignment.center,
                 child: CircleAvatar(
                   radius: 64,
+                  backgroundImage: Image.network(StorageService.readImage(profilePic!).toString()).image,)
+                
+                /*CircleAvatar(
+                  radius: 64,
                   backgroundImage: AssetImage('images/hafiz.jpg'),
-                ),
+                ),*/
               ),
             ),
 
