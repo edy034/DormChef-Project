@@ -7,6 +7,7 @@ class Users {
   String email = '';
   String bio = 'This person is lazy to set a bio';
   String phone = '';
+  String profilePic = '';
   String subscription = 'free';
 
   // Constructor
@@ -38,6 +39,10 @@ class Users {
 
   void setBio(String bio) {
     this.bio = bio;
+  }
+
+  void setProfilePic(String profilePic) {
+    this.profilePic = profilePic;
   }
 
   void setPhone(String phone) {
@@ -77,6 +82,10 @@ class Users {
     return phone;
   }
 
+  String getProfilePic() {
+    return profilePic;
+  }
+
   String getSubscription() {
     return subscription;
   }
@@ -90,6 +99,7 @@ class Users {
       'fullname': '$firstname $lastname',
       'bio': bio,
       'phone': phone,
+      'profilePic': profilePic,
       'subscription': subscription,
     };
   }
@@ -103,6 +113,7 @@ class Users {
     user.setEmail(jsonDecode['email']);
     user.setBio(jsonDecode['bio']);
     user.setPhone(jsonDecode['phone']);
+    user.setProfilePic(jsonDecode['profilePic']);
     user.setSubscription(jsonDecode['subscription']);
     return user;
   }
