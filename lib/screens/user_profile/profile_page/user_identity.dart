@@ -52,8 +52,6 @@ class _UserIdentityState extends State<UserIdentity> {
         username = user.username;
         profilePic = user.profilePic;
         bio = user.bio;
-
-        print(profilePic);
       });
     }
   }

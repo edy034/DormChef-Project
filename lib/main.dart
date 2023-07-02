@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:dormchef/services/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,10 +26,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UserProvider userProvider = Provider.of<UserProvider>(context);
     return MaterialApp(
         title: _title,
-        home: userProvider.uid != null ? const Navigation() : const SplashScreen(),
+        home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if(snapshot.hasData) {
+            return const Navigation();
+          } else {
+            return const SignIn();
+          }
+        }),
         routes: {
           SplashScreen.routeName: (context) => const SplashScreen(),
           SignIn.routeName: (context) => const SignIn(),
