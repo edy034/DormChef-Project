@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:dormchef/services/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:dormchef/screens/user_auth/splash_screen.dart';
+import 'package:dormchef/splash_screen.dart';
 import 'package:dormchef/screens/user_auth/sign_in.dart';
 import 'package:dormchef/screens/user_homepage/navigation.dart';
-import 'package:dormchef/screens/user_profile/profile_edit/profile_edit.dart';
+import 'package:dormchef/screens/user_profile/profile_edit.dart';
 import 'package:provider/provider.dart';
 import 'package:dormchef/services/provider.service.dart';
 
