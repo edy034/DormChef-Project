@@ -1,9 +1,10 @@
-import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:dormchef/widgets/text_style.widget.dart';
-import 'package:provider/provider.dart';
-import '../../../services/provider.service.dart';
+import 'package:dormchef/services/profile.service.dart';
+import 'package:dormchef/models/user.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
+import 'dart:convert';
 
 class UserIdentity extends StatefulWidget {
   const UserIdentity({Key? key}) : super(key: key);
@@ -17,45 +18,43 @@ class UserIdentity extends StatefulWidget {
 /*This class shown user identity including name, profile picture, username and bio.*/
 
 class _UserIdentityState extends State<UserIdentity> {
-  File? profilePicture;
+  String? message;
   String? firstname;
   String? lastname;
   String? fullname;
   String? username;
+  String? profilePic;
   String? bio;
-
-  Future<void> fetchUserData(String uid) async {
-    try {
-      final userDoc =
-          await FirebaseFirestore.instance.collection('users').doc(uid).get();
-      if (userDoc.exists) {
-        Map<String, dynamic> userData = userDoc.data()!;
-        // Process the userData as needed
-        setState(() {
-          firstname = userData['firstname'];
-          lastname = userData['lastname'];
-          username = userData['username'];
-          bio = userData['bio'];
-          fullname = '$firstname $lastname';
-        });
-      } else {
-        // User document does not exist
-        // ignore: avoid_print
-        print('User not authoritized to view this page');
-      }
-    } catch (error) {
-      // Handle any errors that occur during data fetching
-      // ignore: avoid_print
-      print('Error fetching user data: $error');
-    }
-  }
 
   @override
   void initState() {
     super.initState();
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
-    final String uid = userProvider.uid!;
-    fetchUserData(uid);
+    fetchData();
+  }
+
+  void fetchData() async {
+    message = await ProfileService.fetchUserData(context);
+    if (message!.toLowerCase().contains('error')) {
+      showTopSnackBar(
+        // ignore: use_build_context_synchronously
+        Overlay.of(context),
+        CustomSnackBar.error(
+          message: message!,
+        ),
+      );
+    } else {
+      setState(() {
+        Users user = Users.fromJson(jsonDecode(message!));
+        firstname = user.firstname;
+        lastname = user.lastname;
+        fullname = '$firstname $lastname';
+        username = user.username;
+        profilePic = user.profilePic;
+        bio = user.bio;
+
+        print(profilePic);
+      });
+    }
   }
 
   @override

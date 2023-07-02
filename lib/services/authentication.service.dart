@@ -42,7 +42,7 @@ class AuthenticationService {
       User? firebaseUser = auth.currentUser;
       if (firebaseUser != null) {
         Users user = Users.withName(firebaseUser.uid, username, firstname, lastName,
-            email, 'This person is lazy to set a bio', '', 'Free Plan');
+            email, 'This person is lazy to set a bio', '', 'profile.jpg', 'Free Plan');
         Map<String, dynamic> userMap = user.toMap();
         await firestore.collection('users').doc(firebaseUser.uid).set(userMap);
       }

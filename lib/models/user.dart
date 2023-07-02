@@ -5,15 +5,15 @@ class Users {
   String firstname = '';
   String lastname = '';
   String email = '';
-  String bio = 'This person is lazy to set a bio';
+  String bio = '';
   String phone = '';
   String profilePic = '';
-  String subscription = 'free';
+  String subscription = '';
 
   // Constructor
   Users();
   Users.withName(this.uid, this.username, this.firstname, this.lastname, this.email,
-      this.bio, this.phone, this.subscription);
+      this.bio, this.phone, this.profilePic, this.subscription);
 
 
   // Setters
