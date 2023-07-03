@@ -99,17 +99,22 @@ class _UserIdentityState extends State<UserIdentity> {
           children: [
             SizedBox(
               // This container is used to contain the profile picture.
-              child: Align(
-                alignment: Alignment.center,
-                child: CircleAvatar(
-                  radius: 64,
-                  backgroundImage: Image.network(StorageService.readImage(profilePic!).toString()).image,)
-                
-                /*CircleAvatar(
-                  radius: 64,
-                  backgroundImage: AssetImage('images/hafiz.jpg'),
-                ),*/
-              ),
+              child: FutureBuilder<String?>(
+                future: StorageService.readImage(profilePic.toString()),
+                builder: (context, snapshot){
+                  if(snapshot.hasData){
+                    return CircleAvatar(
+                      radius: 64,
+                      backgroundImage: NetworkImage(snapshot.data.toString()),
+                    );
+                  } else {
+                    return const CircleAvatar(
+                      radius: 64,
+                      backgroundImage: AssetImage('images/hafiz.jpg'),
+                    );
+                  }
+                }
+              )
             ),
 
             const SizedBox(height: 8),

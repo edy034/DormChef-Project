@@ -13,10 +13,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(
-    ChangeNotifierProvider(
-        create: (_) => UserProvider(), child: const MyApp())
-  );
+  runApp(ChangeNotifierProvider(
+      create: (_) => UserProvider(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -29,14 +27,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: _title,
         home: StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if(snapshot.hasData) {
-            return const Navigation();
-          } else {
-            return const SignIn();
-          }
-        }),
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                UserProvider userProvider = Provider.of<UserProvider>(context);
+                userProvider.uid = snapshot.data!.uid;
+                return const Navigation();
+              } else {
+                return const SignIn();
+              }
+            }),// const SplashScreen(),
         routes: {
           SplashScreen.routeName: (context) => const SplashScreen(),
           SignIn.routeName: (context) => const SignIn(),

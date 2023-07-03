@@ -28,8 +28,9 @@ class StorageService {
 
   static Future<String?> readImage(String path) async {
     try {
-      Reference ref = storage.ref().child(location + path);
+      Reference ref = storage.ref().child(path);
       String url = await ref.getDownloadURL();
+      print(url);
       return url;
     } catch (e) {
       return null;
