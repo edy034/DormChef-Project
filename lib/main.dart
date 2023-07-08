@@ -25,17 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: _title,
-        home: /*StreamBuilder(
-            stream: FirebaseAuth.instance.authStateChanges(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                UserProvider userProvider = Provider.of<UserProvider>(context);
-                userProvider.uid = snapshot.data!.uid;
-                return const Navigation();
-              } else {
-                return const SignIn();
-              }
-            }),*/ const SplashScreen(),
+        home: const SplashScreen(),
         routes: {
           SplashScreen.routeName: (context) => const SplashScreen(),
           SignIn.routeName: (context) => const SignIn(),

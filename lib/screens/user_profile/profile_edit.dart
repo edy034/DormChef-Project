@@ -1,11 +1,15 @@
+import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dormchef/services/provider.service.dart';
+import 'package:dormchef/services/profile.service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'dart:io';
 import 'package:dormchef/widgets/text_style.widget.dart';
 import 'package:dormchef/widgets/text_field.widget.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -18,18 +22,22 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   File? profilePicture;
-  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-  
-    Future<void> fetchUserData(String uid) async {
+
+  Future<void> fetchUserData(String uid) async {
     try {
-      final userDoc = await FirebaseFirestore.instance.collection('users').doc(uid).get();
+      print(uid);
+      final userDoc =
+          await FirebaseFirestore.instance.collection('users').doc(uid).get();
       if (userDoc.exists) {
         Map<String, dynamic> userData = userDoc.data()!;
         // Process the userData as needed
-        _fullNameController.text = userData['fullname'];
+        _firstNameController.text = userData['firstname'];
+        _lastNameController.text = userData['lastname'];
         _phoneController.text = userData['phone'].toString();
         _usernameController.text = userData['username'];
         _emailController.text = userData['email'];
@@ -45,32 +53,13 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
-  Future<void> updateUserData(String uid) async {
-    try {
-      final userDoc = FirebaseFirestore.instance.collection('users').doc(uid);
-     // print("hai:"+uid);
-      await userDoc.update({
-        'fullname': _fullNameController.text,
-        'phone': _phoneController.text,
-        'username': _usernameController.text,
-        'email': _emailController.text,
-      });
-      // ignore: avoid_print
-      print('User data updated successfully');
-    } catch (error) {
-      // ignore: avoid_print
-      print('Error updating user data: $error');
-    }
-  }
-
   @override
   void initState() {
     super.initState();
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     final String uid = userProvider.uid.toString();
-   // print("hai:"+uid);
+    // print("hai:"+uid);
     fetchUserData(uid);
-
   }
 
   @override
@@ -98,7 +87,6 @@ class _ProfilePageState extends State<ProfilePage> {
                       await picker.pickImage(source: ImageSource.gallery);
 
                   if (pickedImage != null) {
-
                     setState(() {
                       profilePicture = File(pickedImage.path);
                     });
@@ -116,57 +104,90 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                 )),
-
             const SizedBox(height: 68),
-
             CustomTextFieldContainer(
-                textLabel: 'Name',
-                controller: _fullNameController,
-                hintText: 'Hafiz Ahmad'),
+                textLabel: 'First Name',
+                controller: _firstNameController,
+                hintText: 'First Name'),
+            const SizedBox(height: 18),
+            CustomTextFieldContainer(
+                textLabel: 'Last Name',
+                controller: _lastNameController,
+                hintText: 'Last Name'),
             const SizedBox(height: 18),
             CustomTextFieldContainer(
                 textLabel: 'Username',
                 controller: _usernameController,
-                hintText: '@hafizahd'),
+                hintText: '@username'),
             const SizedBox(height: 18),
             CustomTextFieldContainer(
-                textLabel: 'Email Address',
-                controller: _emailController,
-                hintText: 'hafiz@graduate.utm.my',
-                readOnly: true,),
+              textLabel: 'Email Address',
+              controller: _emailController,
+              hintText: '',
+              readOnly: true,
+            ),
             const SizedBox(height: 18),
             CustomTextFieldContainer(
                 textLabel: 'Phone Number',
                 controller: _phoneController,
-                hintText: '0123456789'),
-
+                hintText: ''),
             const SizedBox(height: 36),
-
-            // Text span
-            Text.rich(TextSpan(children: [
-              TextSpan(
-                text: 'Joined',
-                style: ManropeTextStyles.textStyle(),
-              ),
-              TextSpan(
-                text: ' 2 March 2023',
-                style: ManropeTextStyles.textStyle(fontWeight: FontWeight.w700),
-              ),
-            ])),
-
-            const SizedBox(height: 36),
-
             GestureDetector(
               onTap: () async {
-                final userProvider =
-                    Provider.of<UserProvider>(context, listen: false);
-                final String uid = userProvider.uid.toString();
-
                 // Update user data in Firestore
-                await updateUserData(uid);
+                String? message = await ProfileService.updateUserData(
+                    context,
+                    _firstNameController.text,
+                    _lastNameController.text,
+                    _phoneController.text,
+                    _usernameController.text);
+                if (message!.contains('success')) {
+                  showTopSnackBar(
+                    // ignore: use_build_context_synchronously
+                    Overlay.of(context),
+                    CustomSnackBar.success(
+                      message: message,
+                    ),
+                  );
+                } else {
+                  showTopSnackBar(
+                    // ignore: use_build_context_synchronously
+                    Overlay.of(context),
+                    CustomSnackBar.error(
+                      message: message,
+                    ),
+                  );
+                }
 
                 // Fetch the updated user data
-                fetchUserData(uid);
+                // ignore: use_build_context_synchronously
+                String? user = await ProfileService.fetchUserData(context);
+                if (user != null) {
+                  //decode the user data
+                  Map<String, dynamic> userData = jsonDecode(user);
+                  _firstNameController.text = userData['firstname'];
+                  _lastNameController.text = userData['lastname'];
+                  _phoneController.text = userData['phone'].toString();
+                  _usernameController.text = userData['username'];
+                  _emailController.text = userData['email'];
+
+                  showTopSnackBar(
+                    // ignore: use_build_context_synchronously
+                    Overlay.of(context),
+                    const CustomSnackBar.success(
+                      message: 'User data successfully updated',
+                    ),
+                  );
+
+                } else {
+                  showTopSnackBar(
+                    // ignore: use_build_context_synchronously
+                    Overlay.of(context),
+                    const CustomSnackBar.error(
+                      message: 'Error fetching user data',
+                    ),
+                  );
+                }
               },
               child: Container(
                   width: 364.0,
