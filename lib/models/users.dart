@@ -2,18 +2,15 @@ class Users {
   // Properties
   String uid = '';
   String username = '';
-  String firstname = '';
-  String lastname = '';
+  String fullname = '';
   String email = '';
+  String password = '';
   String bio = 'This person is lazy to set a bio';
   String phone = '';
   String subscription = 'free';
 
   // Constructor
   Users();
-  Users.withName(this.uid, this.username, this.firstname, this.lastname, this.email,
-      this.bio, this.phone, this.subscription);
-
 
   // Setters
   void setUid(String uid) {
@@ -24,16 +21,16 @@ class Users {
     this.username = username;
   }
 
-  void setFirstname(String firstname) {
-    this.firstname = firstname;
-  }
-
-  void setLastname(String lastname) {
-    this.lastname = lastname;
+  void setFullname(String fullname) {
+    this.fullname = fullname;
   }
 
   void setEmail(String email) {
     this.email = email;
+  }
+
+  void setPassword(String password) {
+    this.password = password;
   }
 
   void setBio(String bio) {
@@ -57,16 +54,12 @@ class Users {
     return username;
   }
 
-  String getFirstname() {
-    return firstname;
-  }
-
-  String getLastname() {
-    return lastname;
-  }
-
   String getEmail() {
     return email;
+  }
+
+  String getPassword() {
+    return password;
   }
 
   String getBio() {
@@ -86,24 +79,12 @@ class Users {
     return {
       'uid': uid,
       'email': email,
+      'password': password,
       'username': username,
-      'fullname': '$firstname $lastname',
+      'fullname': fullname,
       'bio': bio,
       'phone': phone,
       'subscription': subscription,
     };
-  }
-
-  static Users fromJson(jsonDecode) {
-    Users user = Users();
-    user.setUid(jsonDecode['uid']);
-    user.setUsername(jsonDecode['username']);
-    user.setFirstname(jsonDecode['firstname']);
-    user.setLastname(jsonDecode['lastname']);
-    user.setEmail(jsonDecode['email']);
-    user.setBio(jsonDecode['bio']);
-    user.setPhone(jsonDecode['phone']);
-    user.setSubscription(jsonDecode['subscription']);
-    return user;
   }
 }

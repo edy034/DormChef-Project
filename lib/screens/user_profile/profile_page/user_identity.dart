@@ -1,137 +1,133 @@
-import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:dormchef/widgets/text_style.widget.dart';
-import 'package:provider/provider.dart';
-import '../../../services/provider.service.dart';
+  import 'dart:io';
 
-class UserIdentity extends StatefulWidget {
-  const UserIdentity({Key? key}) : super(key: key);
+  import 'package:cloud_firestore/cloud_firestore.dart';
+  import 'package:flutter/material.dart';
+  import 'package:dormchef/screens/text_style.dart';
+  import 'package:provider/provider.dart';
 
-  static const String routeName = '/user_identity';
+  import '../../../provider.dart';
 
-  @override
-  State<UserIdentity> createState() => _UserIdentityState();
-}
+  class UserIdentity extends StatefulWidget {
+    const UserIdentity({Key? key}) : super(key: key);
 
-/*This class shown user identity including name, profile picture, username and bio.*/
+    static const String routeName = '/user_identity';
 
-class _UserIdentityState extends State<UserIdentity> {
-  File? profilePicture;
-  String? firstname;
-  String? lastname;
-  String? fullname;
-  String? username;
-  String? bio;
+    @override
+    State<UserIdentity> createState() => _UserIdentityState();
+  }
 
-  Future<void> fetchUserData(String uid) async {
-    try {
-      final userDoc =
-          await FirebaseFirestore.instance.collection('users').doc(uid).get();
-      if (userDoc.exists) {
-        Map<String, dynamic> userData = userDoc.data()!;
-        // Process the userData as needed
-        setState(() {
-          firstname = userData['firstname'];
-          lastname = userData['lastname'];
-          username = userData['username'];
-          bio = userData['bio'];
-          fullname = '$firstname $lastname';
-        });
-      } else {
-        // User document does not exist
+  /*This class shown user identity including name, profile picture, username and bio.*/
+
+  class _UserIdentityState extends State<UserIdentity> {
+    File? profilePicture;
+    String username = '';
+    String bio = '';
+
+    Future<void> fetchUserData(String uid) async {
+      try {
+        final userDoc =
+            await FirebaseFirestore.instance.collection('users').doc(uid).get();
+        if (userDoc.exists) {
+          Map<String, dynamic> userData = userDoc.data()!;
+          // Process the userData as needed
+          setState(() {
+            username = userData['username'];
+            bio = userData['bio'];
+          });
+        } else {
+          // User document does not exist
+          // ignore: avoid_print
+          print('User not found');
+        }
+      } catch (error) {
+        // Handle any errors that occur during data fetching
         // ignore: avoid_print
-        print('User not authoritized to view this page');
+        print('Error fetching user data: $error');
       }
-    } catch (error) {
-      // Handle any errors that occur during data fetching
-      // ignore: avoid_print
-      print('Error fetching user data: $error');
     }
-  }
 
-  @override
-  void initState() {
-    super.initState();
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
-    final String uid = userProvider.uid!;
-    fetchUserData(uid);
-  }
+    @override
+    void initState() {
+      super.initState();
+      final userProvider = Provider.of<UserProvider>(context, listen: false);
+      final String uid = userProvider.uid.toString();
+      fetchUserData(uid);
+    }
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        // Align is used to align the widget to the center of the screen.
-        Align(
-          alignment: Alignment.center,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+    @override
+    Widget build(BuildContext context) {
+      return Column(
+        children: [
+          // Align is used to align the widget to the center of the screen.
+          Align(
+            alignment: Alignment.center,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
 
-            // This container is used to contain the name of the user.
-            children: <Widget>[
-              Container(
-                height: 48.0,
-                width: 300.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24.0),
-                  border: Border.all(
-                    width: 1.2,
-                    color: const Color(0xFF999999),
+              // This container is used to contain the name of the user.
+              children: <Widget>[
+                Container(
+                  height: 48.0,
+                  width: 300.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(24.0),
+                    border: Border.all(
+                      width: 1.2,
+                      color: const Color(0xFF999999),
+                    ),
                   ),
-                ),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    fullname.toString(),
-                    style: ManropeTextStyles.textStyle(
-                      color: const Color(0xFF444444),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Hafiz Ahmad',
+                      style: ManropeTextStyles.textStyle(
+                        color: const Color(0xFF444444),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
 
-        const SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
 
-        // This container is used to contain the profile picture, username and bio.
-        Column(
-          children: [
-            const SizedBox(
-              // This container is used to contain the profile picture.
-              child: Align(
-                alignment: Alignment.center,
-                child: CircleAvatar(
-                  radius: 64,
-                  backgroundImage: AssetImage('images/hafiz.jpg'),
+          // This container is used to contain the profile picture, username and bio.
+          Column(
+            children: [
+              const SizedBox(
+                // This container is used to contain the profile picture.
+                child: Align(
+                  alignment: Alignment.center,
+                  child: CircleAvatar(
+                    radius: 64,
+                    backgroundImage: AssetImage('images/hafiz.jpg'),
+                  ),
                 ),
               ),
-            ),
 
-            const SizedBox(height: 8),
+              const SizedBox(height: 8),
 
-            // This text is used to display the username.
-            Text(
-              // display username
-              username.toString(),
-              style: ManropeTextStyles.textStyle(
-                  fontWeight: FontWeight.w400, color: const Color(0xFF585858)),
-            ),
+              // This text is used to display the username.
+              Text(
+                // display username
+                username,
+                style: ManropeTextStyles.textStyle(
+                    fontWeight: FontWeight.w400, color: const Color(0xFF585858)),
+              ),
 
-            const SizedBox(height: 8),
+              const SizedBox(height: 8),
 
-            // This text is used to display the bio.
-            Text(
-              // display bio
-              bio.toString(),
-              style:
-                  ManropeTextStyles.textStyle(color: const Color(0xFF444444)),
-            ),
-          ],
-        )
-      ],
-    );
+              // This text is used to display the bio.
+              Text(
+                // display bio
+                bio,
+                style:
+                    ManropeTextStyles.textStyle(color: const Color(0xFF444444)),
+              ),
+            ],
+          )
+        ],
+      );
+    }
   }
-}

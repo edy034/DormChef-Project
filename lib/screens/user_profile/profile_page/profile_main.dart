@@ -50,8 +50,12 @@ class _ProfileMainState extends State<ProfileMain> {
 
             SizedBox(height: 18),
 
-            // This is the widget for the user's plan
-            UserPlan(),
+            // Add padding to the left of the screen
+            Padding(
+              padding: EdgeInsets.only(left: 24.0),
+              // This is the widget for the user's plan
+              child: UserPlan(),
+            ),
 
             SizedBox(height: 28),
 
