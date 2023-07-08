@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:dormchef/provider.dart';
+import 'package:dormchef/services/provider.service.dart';
 
 class CurrentPlanScreen extends StatefulWidget {
   const CurrentPlanScreen({Key? key}) : super(key: key);

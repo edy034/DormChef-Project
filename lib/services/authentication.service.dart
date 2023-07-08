@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:dormchef/models/user.dart';
+import 'package:dormchef/models/users.dart';
 import 'package:dormchef/services/provider.service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

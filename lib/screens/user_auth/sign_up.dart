@@ -1,10 +1,12 @@
+import 'package:dormchef/screens/user_homepage/navigation.dart';
+import 'package:dormchef/services/authentication.service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dormchef/screens/user_auth/sign_in.dart';
-import 'package:dormchef/screens/user_homepage/navigation.dart';
-import 'package:dormchef/screens/text_style.dart';
-import 'package:dormchef/controllers/user_auth/auth_controller.dart';
-import 'package:dormchef/screens/input_text.dart';
+import 'package:dormchef/widgets/text_style.widget.dart';
+import 'package:dormchef/widgets/text_field.widget.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -18,17 +20,16 @@ class SignUp extends StatefulWidget {
 /*This class is mainly for register user into the system.*/
 
 class _SignUpState extends State<SignUp> {
-  // Create an instance of AuthController
-  AuthController authController = AuthController();
-
   // Create TextEditingController for email, password and username
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
-  TextEditingController fullnameController = TextEditingController();
+  TextEditingController firstnameController = TextEditingController();
+  TextEditingController lastnameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    String? message = '';
     return Scaffold(
         body: SingleChildScrollView(
       child: Column(children: [
@@ -126,9 +127,17 @@ class _SignUpState extends State<SignUp> {
         Padding(
           padding: const EdgeInsets.only(top: 24.0),
           child: CustomTextFieldContainer(
-            textLabel: 'Full Name',
-            controller: fullnameController,
-            hintText: 'Hafiz Ahmad bin Fauzi',
+            textLabel: 'First Name',
+            controller: firstnameController,
+            hintText: 'Hafiz',
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 24.0),
+          child: CustomTextFieldContainer(
+            textLabel: 'Last Name',
+            controller: lastnameController,
+            hintText: 'Ahmad',
           ),
         ),
         Padding(
@@ -168,12 +177,34 @@ class _SignUpState extends State<SignUp> {
           padding: const EdgeInsets.only(top: 24.0),
           child: Column(children: [
             GestureDetector(
-              onTap: () => {
-                // Assign the value of the email, password and username to the user object
-                authController.validateRegisterInput(context, emailController.text,
-                    passwordController.text, usernameController.text, fullnameController.text),
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const SignIn()))
+              onTap: () async{
+                if (emailController.text.isNotEmpty ||
+                    passwordController.text.isNotEmpty ||
+                    usernameController.text.isNotEmpty ||
+                    firstnameController.text.isNotEmpty ||
+                    lastnameController.text.isNotEmpty) {
+                  message = await AuthenticationService.signUp(
+                      emailController.text,
+                      passwordController.text,
+                      usernameController.text,
+                      firstnameController.text,
+                      lastnameController.text) as String;
+                  if (message!.contains('success')) {
+                    // ignore: use_build_context_synchronously
+                    Navigator.pushNamed(context, Navigation.routeName);
+                  } else {
+                    showTopSnackBar(
+                      // ignore: use_build_context_synchronously
+                      Overlay.of(context), 
+                      CustomSnackBar.error(message: message!),
+                      );
+                  }
+                } else {
+                  showTopSnackBar(
+                    Overlay.of(context), 
+                    const CustomSnackBar.error(message: 'Please fill in all the fields'),
+                    );
+                }
               },
               child: Container(
                   width: 364.0,

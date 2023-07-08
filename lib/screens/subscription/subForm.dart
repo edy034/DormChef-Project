@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dormchef/screens/subscription/subscription.dart';
-import 'package:dormchef/screens/user_profile/profile_page/profile_main.dart';
+import '../user_profile/profile_main.dart';
 import 'package:flutter/material.dart';
 //import 'package:dormchef/screens/subscription/subscription.dart';
 //import 'package:dormchef/screens/subscription/CurrentPlanScreen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:dormchef/provider.dart';
+import 'package:dormchef/services/provider.service.dart';
 
 class SubForm extends StatefulWidget {
   const SubForm({Key? key});

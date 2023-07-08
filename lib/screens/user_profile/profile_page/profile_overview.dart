@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dormchef/screens/text_style.dart';
+import 'package:dormchef/widgets/text_style.widget.dart';
 
 class ProfileOverview extends StatefulWidget {
   const ProfileOverview({Key? key}) : super(key: key);

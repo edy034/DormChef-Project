@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 
+// Need to refer yusri's code for this
 class StorageService {
   static FirebaseStorage storage = FirebaseStorage.instance;
 

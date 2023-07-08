@@ -1,6 +1,6 @@
 import 'package:dormchef/screens/issueReport/issueRep.dart';
 import 'package:flutter/material.dart';
-import 'package:dormchef/screens/text_style.dart';
+import 'package:dormchef/widgets/text_style.widget.dart';
 
 class ReportIssue extends StatelessWidget {
   const ReportIssue({Key? key}) : super(key: key);

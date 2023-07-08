@@ -1,8 +1,8 @@
-import 'package:dormchef/screens/text_style.dart';
+import 'package:dormchef/widgets/text_style.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:dormchef/services/profile.service.dart';
 import 'package:dormchef/services/storage.service.dart';
-import 'package:dormchef/models/user.dart';
+import 'package:dormchef/models/users.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'dart:convert';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:dormchef/screens/text_style.dart';
+import 'package:dormchef/widgets/text_style.widget.dart';
 import 'package:dormchef/screens/subscription/subscription.dart';
 
 class UserPlan extends StatefulWidget {

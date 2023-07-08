@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dormchef/screens/subscription/subForm.dart';
-import 'package:dormchef/screens/user_profile/profile_page/profile_main.dart';
+import '../user_profile/profile_main.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:dormchef/provider.dart';
+import 'package:dormchef/services/provider.service.dart';
 
 class Subscription extends StatefulWidget {
   const Subscription({Key? key}) : super(key: key);

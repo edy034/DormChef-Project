@@ -1,13 +1,12 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dormchef/screens/issueReport/viewReport.dart';
-import 'package:dormchef/screens/user_profile/profile_page/profile_main.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
+import '../user_profile/profile_main.dart';
 
 
 class IssueRep extends StatefulWidget {
@@ -117,7 +116,7 @@ class _IssueRepState extends State<IssueRep> {
                       }
 
                       print('from path: ${file.path!}');
-                      print('to new path: ${newFile.path!}');
+                      print('to new path: ${newFile.path}');
                     },
                   ),
                 ],
