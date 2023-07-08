@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 
 class StorageService {
-  static String location = 'gs://dormchef-cc34d.appspot.com/';
   static FirebaseStorage storage = FirebaseStorage.instance;
 
   static Future<String?> uploadImage(String uid, String imagePath) async {
@@ -30,7 +29,6 @@ class StorageService {
     try {
       Reference ref = storage.ref().child(path);
       String url = await ref.getDownloadURL();
-      print(url);
       return url;
     } catch (e) {
       return null;
