@@ -53,6 +53,7 @@ dependencies:
   flutter_pdfview: ^1.0.0
   top_snackbar_flutter: ^3.1.0
   shared_preferences: ^2.2.0
+  open_file: ^3.3.2
   firebase_storage: ^11.2.4
 
 
