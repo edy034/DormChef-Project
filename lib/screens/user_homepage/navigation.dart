@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-
-
 import 'package:dormchef/screens/recipe/add_recipe.dart';
 import 'package:dormchef/screens/user_homepage/home_main.dart';
 import 'package:dormchef/screens/user_profile/profile_main.dart';
@@ -27,10 +25,6 @@ class _NavigationState extends State<Navigation> {
       style: optionStyle,
     ),
     AddRecipe(),
-    Text(
-      'Bookmark',
-      style: optionStyle,
-    ),
     ProfileMain(),
   ];
 
@@ -59,10 +53,6 @@ class _NavigationState extends State<Navigation> {
           BottomNavigationBarItem(
             icon: Icon(Iconsax.add_square),
             label: 'Add',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Iconsax.bookmark),
-            label: 'Bookmark',
           ),
           BottomNavigationBarItem(
             icon: Icon(Iconsax.user),

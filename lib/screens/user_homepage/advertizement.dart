@@ -7,11 +7,7 @@ class Advertizement extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 32, left: 24, right: 24),
-      child: GestureDetector(
-        onTap: () {
-          // TODO: Do something when advertize clicked
-        },
-        child: Container(
+      child: Container(
           clipBehavior: Clip.hardEdge,
           height: 120,
           width: double.maxFinite,
@@ -25,7 +21,6 @@ class Advertizement extends StatelessWidget {
               ]),
           child: Image.asset("images/ads.jpg", fit: BoxFit.cover),
         ),
-      ),
     );
   }
 }
