@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:dormchef/screens/user_auth/sign_up.dart';
-import 'package:dormchef/screens/text_style.dart';
-import 'package:dormchef/controllers/user_auth/auth_controller.dart';
-import 'package:dormchef/screens/input_text.dart';
+import 'package:dormchef/widgets/text_style.widget.dart';
+import 'package:dormchef/widgets/text_field.widget.dart';
+import 'package:dormchef/services/authentication.service.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -63,9 +65,31 @@ class _SignInState extends State<SignIn> {
         Padding(
           padding: const EdgeInsetsDirectional.all(24),
           child: GestureDetector(
-            onTap: () {
-              AuthController().signIn(
-                  context, emailController.text, passwordController.text);
+            onTap: () async {
+              if (emailController.text.isNotEmpty ||
+                  passwordController.text.isNotEmpty) {
+                String? message = await AuthenticationService.signIn(
+                    emailController.text, passwordController.text, context) as String;
+                if (message.contains('success')) {
+                  // ignore: use_build_context_synchronously
+                  Navigator.pushNamed(context, '/navigation');
+                } else {
+                  showTopSnackBar(
+                    // ignore: use_build_context_synchronously
+                    Overlay.of(context),
+                    CustomSnackBar.error(
+                      message: message,
+                    ),
+                  );
+                }
+              } else {
+                showTopSnackBar(
+                  Overlay.of(context),
+                  const CustomSnackBar.error(
+                    message: 'Please fill in all the fields',
+                  ),
+                );
+              }
             },
             child: Container(
                 width: 364.0,
@@ -92,7 +116,6 @@ class _SignInState extends State<SignIn> {
                 "Don't have an account?",
                 style:
                     ManropeTextStyles.textStyle(color: const Color(0xFF111111)),
-
               ),
               const SizedBox(width: 4),
               GestureDetector(
