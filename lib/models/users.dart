@@ -4,15 +4,18 @@ class Users {
   String username = '';
   String firstname = '';
   String lastname = '';
+  String fullname = '';
   String email = '';
+  String password = '';
   String bio = 'This person is lazy to set a bio';
   String phone = '';
-  String subscription = 'free';
+  String profilePic = '';
+  String subscription = '';
 
   // Constructor
   Users();
   Users.withName(this.uid, this.username, this.firstname, this.lastname, this.email,
-      this.bio, this.phone, this.subscription);
+      this.bio, this.phone, this.profilePic, this.subscription);
 
 
   // Setters
@@ -31,13 +34,25 @@ class Users {
   void setLastname(String lastname) {
     this.lastname = lastname;
   }
+  
+  void setFullname(String fullname) {
+    this.fullname = fullname;
+  }
 
   void setEmail(String email) {
     this.email = email;
   }
 
+  void setPassword(String password) {
+    this.password = password;
+  }
+
   void setBio(String bio) {
     this.bio = bio;
+  }
+
+  void setProfilePic(String profilePic) {
+    this.profilePic = profilePic;
   }
 
   void setPhone(String phone) {
@@ -57,16 +72,12 @@ class Users {
     return username;
   }
 
-  String getFirstname() {
-    return firstname;
-  }
-
-  String getLastname() {
-    return lastname;
-  }
-
   String getEmail() {
     return email;
+  }
+
+  String getPassword() {
+    return password;
   }
 
   String getBio() {
@@ -75,6 +86,10 @@ class Users {
 
   String getPhone() {
     return phone;
+  }
+
+  String getProfilePic() {
+    return profilePic;
   }
 
   String getSubscription() {
@@ -86,10 +101,12 @@ class Users {
     return {
       'uid': uid,
       'email': email,
+      'password': password,
       'username': username,
-      'fullname': '$firstname $lastname',
+      'fullname': fullname,
       'bio': bio,
       'phone': phone,
+      'profilePic': profilePic,
       'subscription': subscription,
     };
   }
@@ -103,6 +120,7 @@ class Users {
     user.setEmail(jsonDecode['email']);
     user.setBio(jsonDecode['bio']);
     user.setPhone(jsonDecode['phone']);
+    user.setProfilePic(jsonDecode['profilePic']);
     user.setSubscription(jsonDecode['subscription']);
     return user;
   }

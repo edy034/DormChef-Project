@@ -1,7 +1,7 @@
-import 'package:dormchef/widgets/text_style.widget.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:dormchef/widgets/text_style.widget.dart';
 
 class AddRecipe extends StatelessWidget {
   const AddRecipe({super.key});

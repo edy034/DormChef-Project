@@ -1,13 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dormchef/services/provider.service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'dart:io';
-import 'package:dormchef/widgets/text_field.widget.dart';
 import 'package:dormchef/widgets/text_style.widget.dart';
+import 'package:dormchef/widgets/text_field.widget.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:dormchef/services/profile.service.dart';
-import 'package:dormchef/models/user.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
-import 'dart:convert';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -20,39 +18,59 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   File? profilePicture;
-  String? message;
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+  
+    Future<void> fetchUserData(String uid) async {
+    try {
+      final userDoc = await FirebaseFirestore.instance.collection('users').doc(uid).get();
+      if (userDoc.exists) {
+        Map<String, dynamic> userData = userDoc.data()!;
+        // Process the userData as needed
+        _fullNameController.text = userData['fullname'];
+        _phoneController.text = userData['phone'].toString();
+        _usernameController.text = userData['username'];
+        _emailController.text = userData['email'];
+      } else {
+        // User document does not exist
+        // ignore: avoid_print
+        print('User not found');
+      }
+    } catch (error) {
+      // Handle any errors that occur during data fetching
+      // ignore: avoid_print
+      print('Error fetching user data: $error');
+    }
+  }
+
+  Future<void> updateUserData(String uid) async {
+    try {
+      final userDoc = FirebaseFirestore.instance.collection('users').doc(uid);
+     // print("hai:"+uid);
+      await userDoc.update({
+        'fullname': _fullNameController.text,
+        'phone': _phoneController.text,
+        'username': _usernameController.text,
+        'email': _emailController.text,
+      });
+      // ignore: avoid_print
+      print('User data updated successfully');
+    } catch (error) {
+      // ignore: avoid_print
+      print('Error updating user data: $error');
+    }
+  }
 
   @override
   void initState() {
     super.initState();
-    fetchData();
-  }
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    final String uid = userProvider.uid.toString();
+   // print("hai:"+uid);
+    fetchUserData(uid);
 
-  void fetchData() async {
-    message = await ProfileService.fetchUserData(context);
-    if (message!.toLowerCase().contains('error')) {
-      showTopSnackBar(
-        // ignore: use_build_context_synchronously
-        Overlay.of(context),
-        CustomSnackBar.error(
-          message: message!,
-        ),
-      );
-    } else {
-      setState(() {
-        Users user = Users.fromJson(jsonDecode(message!));
-        _firstNameController.text = user.firstname;
-        _lastNameController.text = user.lastname;
-        _phoneController.text = user.phone;
-        _usernameController.text = user.username;
-        _emailController.text = user.email;
-      });
-    }
   }
 
   @override
@@ -60,18 +78,18 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
+          // This is the icon for the back button
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
             // Navigate back to the previous screen by popping the current screen
             Navigator.pop(context);
           },
         ),
-        backgroundColor: const Color(0xFF0B9A61),
       ),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             GestureDetector(
                 onTap: () async {
@@ -80,6 +98,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       await picker.pickImage(source: ImageSource.gallery);
 
                   if (pickedImage != null) {
+
                     setState(() {
                       profilePicture = File(pickedImage.path);
                     });
@@ -97,61 +116,57 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                 )),
+
             const SizedBox(height: 68),
+
             CustomTextFieldContainer(
-                textLabel: 'First Name',
-                controller: _firstNameController,
-                hintText: 'Hafiz'),
+                textLabel: 'Name',
+                controller: _fullNameController,
+                hintText: 'Hafiz Ahmad'),
             const SizedBox(height: 18),
-            CustomTextFieldContainer(
-                textLabel: 'Last Name',
-                controller: _lastNameController,
-                hintText: 'Ahmad'),
             CustomTextFieldContainer(
                 textLabel: 'Username',
                 controller: _usernameController,
                 hintText: '@hafizahd'),
             const SizedBox(height: 18),
             CustomTextFieldContainer(
-              textLabel: 'Email Address',
-              controller: _emailController,
-              hintText: 'hafiz@graduate.utm.my',
-              readOnly: true,
-            ),
+                textLabel: 'Email Address',
+                controller: _emailController,
+                hintText: 'hafiz@graduate.utm.my',
+                readOnly: true,),
             const SizedBox(height: 18),
             CustomTextFieldContainer(
                 textLabel: 'Phone Number',
                 controller: _phoneController,
                 hintText: '0123456789'),
+
             const SizedBox(height: 36),
+
+            // Text span
+            Text.rich(TextSpan(children: [
+              TextSpan(
+                text: 'Joined',
+                style: ManropeTextStyles.textStyle(),
+              ),
+              TextSpan(
+                text: ' 2 March 2023',
+                style: ManropeTextStyles.textStyle(fontWeight: FontWeight.w700),
+              ),
+            ])),
+
+            const SizedBox(height: 36),
+
             GestureDetector(
               onTap: () async {
-                message = await ProfileService.updateUserData(
-                    context,
-                    _firstNameController.text,
-                    _lastNameController.text,
-                    _phoneController.text,
-                    _usernameController.text);
-                if (message!.toLowerCase().contains('success')) {
-                  showTopSnackBar(
-                    // ignore: use_build_context_synchronously
-                    Overlay.of(context),
-                    CustomSnackBar.success(
-                      message: message!,
-                    ),
-                  );
+                final userProvider =
+                    Provider.of<UserProvider>(context, listen: false);
+                final String uid = userProvider.uid.toString();
 
-                  // Re-render page
-                  setState(() {});
-                } else {
-                  showTopSnackBar(
-                    // ignore: use_build_context_synchronously
-                    Overlay.of(context),
-                    CustomSnackBar.error(
-                      message: message!,
-                    ),
-                  );
-                }
+                // Update user data in Firestore
+                await updateUserData(uid);
+
+                // Fetch the updated user data
+                fetchUserData(uid);
               },
               child: Container(
                   width: 364.0,
@@ -162,7 +177,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   child: Align(
                       alignment: Alignment.center,
-                      child: Text('Update',
+                      child: Text('Continue',
                           style: ManropeTextStyles.textStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
