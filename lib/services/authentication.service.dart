@@ -11,8 +11,7 @@ class AuthenticationService {
 
   static Future<String?> signIn(String email, String password, BuildContext context) async {
     try {
-      final UserCredential userCredential = await auth
-          .signInWithEmailAndPassword(email: email, password: password);
+      final UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
       final User? user = userCredential.user;
       if (user != null) {
         // ignore: use_build_context_synchronously
