@@ -1,4 +1,12 @@
   import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:dormchef/widgets/text_style.widget.dart';
+import 'package:dormchef/services/profile.service.dart';
+import 'package:dormchef/services/storage.service.dart';
+import 'package:dormchef/models/user.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
+import 'dart:convert';
 
   import 'package:cloud_firestore/cloud_firestore.dart';
   import 'package:flutter/material.dart';
@@ -12,47 +20,43 @@
 
     static const String routeName = '/user_identity';
 
-    @override
-    State<UserIdentity> createState() => _UserIdentityState();
+class _UserIdentityState extends State<UserIdentity> {
+  String? message;
+  String? firstname;
+  String? lastname;
+  String? fullname;
+  String? username;
+  String? profilePic;
+  String? bio;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
   }
 
-  /*This class shown user identity including name, profile picture, username and bio.*/
-
-  class _UserIdentityState extends State<UserIdentity> {
-    File? profilePicture;
-    String username = '';
-    String bio = '';
-
-    Future<void> fetchUserData(String uid) async {
-      try {
-        final userDoc =
-            await FirebaseFirestore.instance.collection('users').doc(uid).get();
-        if (userDoc.exists) {
-          Map<String, dynamic> userData = userDoc.data()!;
-          // Process the userData as needed
-          setState(() {
-            username = userData['username'];
-            bio = userData['bio'];
-          });
-        } else {
-          // User document does not exist
-          // ignore: avoid_print
-          print('User not found');
-        }
-      } catch (error) {
-        // Handle any errors that occur during data fetching
-        // ignore: avoid_print
-        print('Error fetching user data: $error');
-      }
+  void fetchData() async {
+    message = await ProfileService.fetchUserData(context);
+    if (message!.toLowerCase().contains('error')) {
+      showTopSnackBar(
+        // ignore: use_build_context_synchronously
+        Overlay.of(context),
+        CustomSnackBar.error(
+          message: message!,
+        ),
+      );
+    } else {
+      setState(() {
+        Users user = Users.fromJson(jsonDecode(message!));
+        firstname = user.firstname;
+        lastname = user.lastname;
+        fullname = '$firstname $lastname';
+        username = user.username;
+        profilePic = user.profilePic;
+        bio = user.bio;
+      });
     }
-
-    @override
-    void initState() {
-      super.initState();
-      final userProvider = Provider.of<UserProvider>(context, listen: false);
-      final String uid = userProvider.uid.toString();
-      fetchUserData(uid);
-    }
+  }
 
     @override
     Widget build(BuildContext context) {
@@ -130,4 +134,5 @@
         ],
       );
     }
+  }
   }

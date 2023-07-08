@@ -1,10 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:dormchef/database/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:dormchef/screens/user_auth/splash_screen.dart';
+import 'package:dormchef/splash_screen.dart';
 import 'package:dormchef/screens/user_auth/sign_in.dart';
 import 'package:dormchef/screens/user_homepage/navigation.dart';
-import 'package:dormchef/screens/user_profile/profile_edit/profile_edit.dart';
+import 'package:dormchef/screens/user_profile/profile_edit.dart';
 import 'package:provider/provider.dart';
 import 'package:dormchef/provider.dart';
 
@@ -13,9 +14,7 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(ChangeNotifierProvider(
-      create: (_) => UserProvider(),
-      child: const MyApp(),
-    ),);
+      create: (_) => UserProvider(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -25,12 +24,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: _title, home: const SplashScreen(), 
-    routes: {
-      SplashScreen.routeName: (context) => const SplashScreen(),
-      SignIn.routeName: (context) => const SignIn(),
-      Navigation.routeName: (context) => const Navigation(),
-      ProfilePage.routeName: (context) => const ProfilePage(),
-    });
+    return MaterialApp(
+        title: _title,
+        home: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                UserProvider userProvider = Provider.of<UserProvider>(context);
+                userProvider.uid = snapshot.data!.uid;
+                return const Navigation();
+              } else {
+                return const SignIn();
+              }
+            }),// const SplashScreen(),
+        routes: {
+          SplashScreen.routeName: (context) => const SplashScreen(),
+          SignIn.routeName: (context) => const SignIn(),
+          Navigation.routeName: (context) => const Navigation(),
+          ProfilePage.routeName: (context) => const ProfilePage(),
+        });
   }
 }
